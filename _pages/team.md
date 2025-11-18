@@ -195,83 +195,23 @@ permalink: /team/
 
 ## <span style="color: #8C1D40;"><strong>Robots</strong></span>
 
-{% assign number_printed = 0 %}
-{% for member in site.data.robots %}
-
-{% assign even_odd = number_printed | modulo: 2 %}
-{% if even_odd == 0 %}
 <div class="row">
-{% endif %}
-
 <div class="col-sm-12 clearfix">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/teampic/{{ member.photo }}" class="img-responsive" width="20%" style="float: left" />
-  <h4 style="font-size: 2.4rem; font-weight: 600; margin-top: 32px; margin-bottom: 0.25rem;">
-    {{ member.name }}
+  <img src="{{ site.url }}{{ site.baseurl }}/images/teampic/raven2.jpg" class="img-responsive" width="20%" style="float:left; margin-right:20px;" />
+
+  <h4 style="font-size: 2.4rem; font-weight:600; margin-top:32px;">
+    Raven II
   </h4>
-  <i>{{ member.model }}</i>
 
-  {% if member.year %}
-  <p style="color:#444;">Built: {{ member.year }}</p>
-  {% endif %}
+  <p style="max-width:500px;">
+    A state-of-the-art surgical robot platform used in minimally invasive telerobotic research.
+  </p>
+
+  <p style="font-size:1rem;">
+    <a href="{{ site.url }}{{ site.baseurl }}/team/raven2/" style="font-weight:600;">➡ Learn more about Raven II</a>
+  </p>
 </div>
-
-{% assign number_printed = number_printed | plus: 1 %}
-{% if even_odd == 1 %}
 </div>
-{% endif %}
-{% endfor %}
-
-{% assign even_odd = number_printed | modulo: 2 %}
-{% if even_odd == 1 %}
-</div>
-{% endif %}
-<!-- ## <span style="color: #8C1D40;"><strong>PhD and Postdoc Alumni</strong></span>
-
-{% assign number_printed = 0 %}
-{% for member in site.data.alumni_members %}
-
-{% assign even_odd = number_printed | modulo: 2 %}
-
-{% if even_odd == 0 %}
-<div class="row">
-{% endif %}
-
-<div class="col-sm-12 clearfix">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/teampic/{{ member.photo }}" class="img-responsive" width="15%" style="float: left" />
-  <h4 style="font-size: 2.4rem; font-weight: 600; margin-top: 18px;">
-    {{ member.name }}
-  </h4>
-  <i>{{ member.duration }}</i>
-  
-  {% if member.dissertation %}
-  <i>Dissertation: {{ member.dissertation }}</i>
-  {% endif %}
-
-  {% if member.email %}
-  <a href="mailto:{{ member.email }}">{{ member.email }}</a>
-  {% endif %}
-
-  {% if member.website %}
-  <a href="{{ member.website }}" target="_blank">Personal Website</a>
-  {% endif %}
-  
-  <ul style="overflow: hidden">
-
-  </ul>
-</div>
-
-{% assign number_printed = number_printed | plus: 1 %}
-
-{% if even_odd == 1 %}
-</div>
-{% endif %}
-
-{% endfor %}
-
-{% assign even_odd = number_printed | modulo: 2 %}
-{% if even_odd == 1 %}
-</div>
-{% endif %} -->
 
 <!-- ## <span style="color: #8C1D40;"><strong>Former visitors, BSc/ MSc students</strong></span>
 <div class="row">
