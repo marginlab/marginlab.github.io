@@ -207,7 +207,7 @@ permalink: /team/
   </h4>
 
   <p style="font-size:1rem; margin-top:10px;">
-    <a href="{{ site.url }}{{ site.baseurl }}{{ robot.url }}" style="font-weight:600;">
+    <a href="{{ site.url }}{{ site.baseurl }}{{ robot.url }}" style="font-weight:600; font-size:1rem;">
       More Details
     </a>
   </p>
