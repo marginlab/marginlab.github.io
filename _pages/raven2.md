@@ -2,6 +2,7 @@
 title: "RAVEN II Surgical Robot"
 layout: page
 permalink: /team/raven2/
+class: robot-page
 ---
 <div style="margin-left: 30px; margin-right: 30px;">
   
