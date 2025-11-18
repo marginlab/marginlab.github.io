@@ -5,7 +5,7 @@ permalink: /team/raven2/
 class: robot-page
 ---
 
-<h1 style="margin-top: 30px; margin-left: 30px; margin-right: 40px;">
+<h1 style="margin-top: 40px; margin-left: 30px; margin-right: 40px;">
 RAVEN II Surgical Robot
 </h1>
 
