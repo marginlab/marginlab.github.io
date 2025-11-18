@@ -127,10 +127,10 @@ firstp {
   margin-bottom: 20px;
 }
 
-.robot-link {
-  font-size: 0.95em !important; /* same as team emails */
+#gridid .row .col-sm-12 .robot-link {
+  font-size: 0.95em !important;  /* matches team emails */
   font-weight: 600 !important;
-  text-decoration: none; /* optional */
+  text-decoration: none;
 }
 
 
