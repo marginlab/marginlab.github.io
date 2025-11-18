@@ -128,8 +128,9 @@ firstp {
 }
 
 .robot-link {
-  font-size: 0.95em !important;
-  font-weight: 600;
+  font-size: 0.95em !important; /* same as team emails */
+  font-weight: 600 !important;
+  text-decoration: none; /* optional */
 }
 
 
