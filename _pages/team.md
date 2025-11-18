@@ -208,7 +208,7 @@ permalink: /team/
 
   <p style="font-size:1rem; margin-top:10px;">
     <a href="{{ site.url }}{{ site.baseurl }}{{ robot.url }}" style="font-weight:600;">
-      ➡ Learn more
+      More Details
     </a>
   </p>
 
