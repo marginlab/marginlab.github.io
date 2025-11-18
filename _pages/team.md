@@ -193,7 +193,7 @@ permalink: /team/
 </div>
 {% endif %}
 
-## <span style="color: #8C1D40;"><strong>Robots 🤖</strong></span>
+## <span style="color: #8C1D40;"><strong>Robots</strong></span>
 
 {% assign number_printed = 0 %}
 {% for member in site.data.robots %}
