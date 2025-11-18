@@ -193,7 +193,38 @@ permalink: /team/
 </div>
 {% endif %}
 
+## <span style="color: #8C1D40;"><strong>Robots 🤖</strong></span>
 
+{% assign number_printed = 0 %}
+{% for member in site.data.robots %}
+
+{% assign even_odd = number_printed | modulo: 2 %}
+{% if even_odd == 0 %}
+<div class="row">
+{% endif %}
+
+<div class="col-sm-12 clearfix">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/teampic/{{ member.photo }}" class="img-responsive" width="20%" style="float: left" />
+  <h4 style="font-size: 2.4rem; font-weight: 600; margin-top: 32px; margin-bottom: 0.25rem;">
+    {{ member.name }}
+  </h4>
+  <i>{{ member.model }}</i>
+
+  {% if member.year %}
+  <p style="color:#444;">Built: {{ member.year }}</p>
+  {% endif %}
+</div>
+
+{% assign number_printed = number_printed | plus: 1 %}
+{% if even_odd == 1 %}
+</div>
+{% endif %}
+{% endfor %}
+
+{% assign even_odd = number_printed | modulo: 2 %}
+{% if even_odd == 1 %}
+</div>
+{% endif %}
 <!-- ## <span style="color: #8C1D40;"><strong>PhD and Postdoc Alumni</strong></span>
 
 {% assign number_printed = 0 %}
