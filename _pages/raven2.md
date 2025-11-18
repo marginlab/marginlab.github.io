@@ -3,9 +3,8 @@ title: "RAVEN II Surgical Robot"
 layout: page
 permalink: /team/raven2/
 ---
-
-# RAVEN II Surgical Robot
-
+<div style="margin-left: 30px;">
+  
 <img src="{{ site.url }}{{ site.baseurl }}/images/teampic/raven2.png" style="width:40%; margin-bottom:20px;">
 
 RAVEN II is an open-source surgical robotic platform for research in telesurgery and autonomous surgical task execution.
@@ -28,4 +27,4 @@ We use RAVEN II for:
 
 ---
 
-✔ More content, videos, publications, and datasets can be added later.
+</div>
