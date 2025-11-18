@@ -7,7 +7,6 @@ class: robot-page
 <div style="margin-left: 30px; margin-right: 30px;">
   
 <img src="{{ site.url }}{{ site.baseurl }}/images/teampic/raven2.png" style="width:40%; margin-bottom:20px;">
-<p style="font-size:1.15rem; line-height:1.6;">
 
 RAVEN II is an open-source surgical robotic platform for research in telesurgery and autonomous surgical task execution.
 
