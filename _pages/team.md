@@ -195,23 +195,27 @@ permalink: /team/
 
 ## <span style="color: #8C1D40;"><strong>Robots</strong></span>
 
+{% for robot in site.data.robots %}
 <div class="row">
 <div class="col-sm-12 clearfix">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/teampic/raven2.jpg" class="img-responsive" width="20%" style="float:left; margin-right:20px;" />
+
+  <img src="{{ site.url }}{{ site.baseurl }}/images/teampic/{{ robot.photo }}" 
+       class="img-responsive" width="20%" style="float:left; margin-right:20px;" />
 
   <h4 style="font-size: 2.4rem; font-weight:600; margin-top:32px;">
-    Raven II
+    {{ robot.name }}
   </h4>
 
-  <p style="max-width:500px;">
-    A state-of-the-art surgical robot platform used in minimally invasive telerobotic research.
+  <p style="font-size:1rem; margin-top:10px;">
+    <a href="{{ site.url }}{{ site.baseurl }}{{ robot.url }}" style="font-weight:600;">
+      ➡ Learn more
+    </a>
   </p>
 
-  <p style="font-size:1rem;">
-    <a href="{{ site.url }}{{ site.baseurl }}/team/raven2/" style="font-weight:600;">➡ Learn more about Raven II</a>
-  </p>
 </div>
 </div>
+<div style="margin-bottom:30px;"></div>
+{% endfor %}
 
 <!-- ## <span style="color: #8C1D40;"><strong>Former visitors, BSc/ MSc students</strong></span>
 <div class="row">
