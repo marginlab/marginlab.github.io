@@ -120,18 +120,37 @@ firstp {
   margin-left: 40px;
   margin-right: 40px;
 }
-/* -------- Logo Styling -------- */
+/* -------- Logo Styling (fixed for one-row header) -------- */
 .navbar-brand {
   display: flex;
-  align-items: center;
-  gap: 4px; /* space between logo and text */
+  align-items: center;  /* vertically center logo and text */
+  gap: 8px;             /* spacing between logo and text */
+  padding: 0;            /* remove extra padding */
+  height: 50px;          /* match navbar height if needed */
 }
 
 .brand-logo {
-  height: 28px;  /* adjust until perfect */
+  height: 28px;         /* adjust to match text height */
   width: auto;
+  margin: 0;            /* remove top/bottom margin */
   vertical-align: middle;
 }
+
+/* Remove previous global img margin inside navbar */
+.navbar-brand img {
+  margin: 0;
+}
+
+/* Optional: adjust text spacing slightly */
+.navbar .navbar-brand .lab-name {
+  line-height: 28px;   /* match logo height */
+}
+
+.navbar .navbar-brand .uni-name {
+  line-height: 28px;   /* match logo height */
+  font-size: 0.85em;
+}
+
 
 
 
