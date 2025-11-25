@@ -120,6 +120,28 @@ firstp {
   margin-left: 40px;
   margin-right: 40px;
 }
+/* -------- Logo Styling -------- */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* space between logo and text */
+}
+
+.nav-logo {
+  height: 28px; /* adjust depending on your navbar height */
+  width: auto;
+  border-radius: 4px; /* optional */
+}
+
+.lab-name {
+  font-weight: bold;
+}
+
+.uni-name {
+  font-size: 0.8em;
+  margin-left: 4px;
+  opacity: 0.8;
+}
 
 
 
