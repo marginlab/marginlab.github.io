@@ -127,21 +127,12 @@ firstp {
   gap: 8px; /* space between logo and text */
 }
 
-.nav-logo {
-  height: 28px; /* adjust depending on your navbar height */
+.brand-logo {
+  height: 28px;  /* adjust until perfect */
   width: auto;
-  border-radius: 4px; /* optional */
+  vertical-align: middle;
 }
 
-.lab-name {
-  font-weight: bold;
-}
-
-.uni-name {
-  font-size: 0.8em;
-  margin-left: 4px;
-  opacity: 0.8;
-}
 
 
 
