@@ -32,13 +32,5 @@ Results reveal a gap between **accuracy and reasoning**, motivating the need for
 
 ## 📌 More Works Coming Soon
 
-We are currently developing more research projects in areas including:
 
-- Surgical action understanding & reasoning
-- Vision-language surgical assistance models
-- Explainability metrics for trustworthy AI in the OR
-- Foundation models for robotic surgery
-- Dataset creation & annotation-efficient learning
-
-Stay tuned — **more papers and demos will be added here soon.** 🚀
 
