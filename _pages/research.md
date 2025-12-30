@@ -34,7 +34,7 @@ permalink: /research/
       </p>
 
       <p class="paper-links">
-        <a class="btn" href="YOUR_ARXIV_OR_PAPER_LINK" target="_blank">📄 Paper (Coming Soon)</a>
+        <a class="btn" href="https://arxiv.org/abs/2505.10764" target="_blank">📄 Paper on arXiv</a>
         <a class="btn secondary" href="https://github.com/jiajun344/SurgXBench-Explainable-Vision-Language-Model-Benchmark-for-Surgery" target="_blank">💻 GitHub Code</a>
       </p>
     </div>
