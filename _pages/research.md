@@ -24,11 +24,6 @@ Results reveal a gap between **accuracy and reasoning**, motivating the need for
 📄 Paper → https://arxiv.org/abs/2505.10764  
 💻 Code → https://github.com/jiajun344/SurgXBench-Explainable-Vision-Language-Model-Benchmark-for-Surgery
 
-### Figures  
-![SurgXBench Figure 1](/images/SurgXBench(1).png)  
-![SurgXBench Figure 2](/images/SurgXBench(2).png)
-
----
 
 ## 📌 More Works Coming Soon
 
