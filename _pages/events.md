@@ -31,7 +31,26 @@ permalink: /events/
 
 ---
 
-<p style="margin: 0 0 24px 0; font-size: 1.4em; ">
-  Stay tuned for updates on future events!
+<h3 style="font-size: 1.8em; font-weight: bold; margin-bottom: 4px;">
+  Visit to MARGIN Lab
+</h3>
+
+<p style="margin: 0;"><strong>Date:</strong> Mar/12/2026</p>
+
+<p style="margin: 0 0 8px 0;">
+  We were delighted to welcome
+  <a href="https://www.cs.toronto.edu/~jbk/" target="_blank"><strong>Jessica Burgner-Kahrs</strong></a>
+  and
+  <a href="https://bme.utoronto.ca/faculty-research/core-faculty/lueder-kahrs/" target="_blank"><strong>Lueder Alexander Kahrs</strong></a>
+  to MARGIN Lab. Their visit provided a wonderful opportunity for discussion, collaboration, and exchange of ideas in surgical robotics and medical imaging research.
 </p>
 
+<div style="text-align: center; margin-top: 0;">
+  <img src="{{ site.baseurl }}/images/jessica_lueder_visit.jpg" alt="Jessica Burgner-Kahrs and Lueder Alexander Kahrs visiting MARGIN Lab" style="max-width: 80%; height: auto; margin-top: 0;">
+</div>
+
+---
+
+<p style="margin: 0 0 24px 0; font-size: 1.4em;">
+  Stay tuned for updates on future events!
+</p>
