@@ -42,7 +42,7 @@ permalink: /events/
   <a href="https://www.cs.toronto.edu/~jbk/" target="_blank"><strong>Jessica Burgner-Kahrs</strong></a>
   and
   <a href="https://bme.utoronto.ca/faculty-research/core-faculty/lueder-kahrs/" target="_blank"><strong>Lueder Alexander Kahrs</strong></a>
-  to MARGIN Lab. Their visit provided a wonderful opportunity for discussion, collaboration, and exchange of ideas in surgical robotics and medical imaging research.
+  to MARGIN Lab.
 </p>
 
 <div style="text-align: center; margin-top: 0;">
