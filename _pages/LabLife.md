@@ -23,7 +23,7 @@ permalink: /lab-life/
 </p>
 
 <div style="text-align: center; margin-top: 0;">
-  <img src="{{ site.baseurl }}/images/teampic/grand_canyon_lab_life.jpg" 
+  <img src="{{ site.baseurl }}/images/teampic/grandcanyon.jpg" 
        alt="Lab Life Grand Canyon Trip" 
        style="max-width: 80%; height: auto; margin-top: 0;">
 </div>
