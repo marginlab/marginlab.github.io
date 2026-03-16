@@ -46,7 +46,9 @@ permalink: /events/
 </p>
 
 <div style="text-align: center; margin-top: 0;">
-  <img src="{{ site.baseurl }}/images/jessica_lueder_visit.jpg" alt="Jessica Burgner-Kahrs and Lueder Alexander Kahrs visiting MARGIN Lab" style="max-width: 80%; height: auto; margin-top: 0;">
+  <img src="{{ site.baseurl }}/images/teampic/Jessica_Lueder_visit.jpg" 
+       alt="Jessica Burgner-Kahrs and Lueder Alexander Kahrs visiting MARGIN Lab" 
+       style="max-width: 80%; height: auto; margin-top: 0;">
 </div>
 
 ---
