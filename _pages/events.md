@@ -46,7 +46,7 @@ permalink: /events/
 </p>
 
 <div style="text-align: center; margin-top: 0;">
-  <img src="{{ site.baseurl }}/images/teampic/Jessica_Lueder_visit.jpg" 
+  <img src="{{ site.baseurl }}/images/teampic/20260312_175110.jpg" 
        style="max-width: 80%; height: auto; margin-top: 0;">
 </div>
 
