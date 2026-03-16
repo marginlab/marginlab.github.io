@@ -3,7 +3,7 @@ title: "MARGIN Lab - Lab Life"
 layout: textlay
 excerpt: "Moments and activities from MARGIN Lab"
 sitemap: false
-permalink: /lab-life/
+permalink: /LabLife/
 ---
 
 # Lab Life
