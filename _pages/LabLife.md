@@ -3,7 +3,7 @@ title: "MARGIN Lab - Lab Life"
 layout: textlay
 excerpt: "Moments and activities from MARGIN Lab"
 sitemap: false
-permalink: /LabLife/
+permalink: /lab-life/
 ---
 
 # Lab Life
@@ -16,7 +16,8 @@ permalink: /LabLife/
 
 <p style="margin: 0 0 8px 0;">
   We had a wonderful trip to <strong>Grand Canyon National Park</strong> together with our friends 
-  <a href="https://irislab.tech/" target="_blank"><strong>Jiajun, Haokai, and Zhixian</strong></a> 
+  Jiajun, Haokai, and 
+  <a href="https://irislab.tech/" target="_blank"><strong>Zhixian</strong></a> 
   from IRIS Lab. It was a great opportunity to explore one of the most breathtaking natural landmarks 
   while enjoying time together outside the lab and strengthening collaborations between our groups.
 </p>
