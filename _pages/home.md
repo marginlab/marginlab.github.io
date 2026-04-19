@@ -17,6 +17,7 @@ We develop machine learning and robotic systems to support robotic-assisted and 
         <li data-target="#carousel" data-slide-to="1"></li>
         <li data-target="#carousel" data-slide-to="2"></li>
         <li data-target="#carousel" data-slide-to="3"></li>
+        <li data-target="#carousel" data-slide-to="4"></li>
     </ol>
 
     <!-- Items -->
@@ -32,7 +33,10 @@ We develop machine learning and robotic systems to support robotic-assisted and 
         </div>
         <div class="item">
             <img src="{{ site.url }}{{ site.baseurl }}/images/slider7001400/manipulation.png" alt="Slide 4" />
-        </div>       
+        </div> 
+        <div class="item">
+            <img src="{{ site.url }}{{ site.baseurl }}/images/slider7001400/RoboSoft2026.png" alt="Slide 5" />
+        </div>
     </div>
   <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -44,7 +48,7 @@ We develop machine learning and robotic systems to support robotic-assisted and 
   </a>
 </div>
 
-**We are always looking for passionate students students to join the team** [(more info)]({{ site.url }}/opportunities) **!**
+**We are always looking for passionate students to join the team** [(more info)]({{ site.url }}/opportunities) **!**
 
 
 
