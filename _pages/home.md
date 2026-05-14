@@ -26,7 +26,7 @@ We develop machine learning and robotic systems to support robotic-assisted and 
             <img src="{{ site.url }}{{ site.baseurl }}/images/slider7001400/RoboSoft2026.png" alt="RoboSoft2026" />
         </div>
         <div class="item">
-            <img src="{{ site.url }}{{ site.baseurl }}/images/slider7001400/JiajunMLday.png" alt="Slide 1" />
+            <img src="{{ site.url }}{{ site.baseurl }}/images/slider7001400/JiajunMLday.jpg" alt="Slide 1" />
         </div>
         <div class="item">
             <img src="{{ site.url }}{{ site.baseurl }}/images/slider7001400/raven.png" alt="Slide 2" /> 
