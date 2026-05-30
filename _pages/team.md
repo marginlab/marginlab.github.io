@@ -99,6 +99,8 @@ permalink: /team/
   <p style="margin: 0 0 2px 0; line-height: 1.2; color: #444;">{{ member.education5 }}</p>
 {% endif %}
 
+<div style="margin-bottom: -8rem;"></div>
+
   {% if member.email or member.website or member.google_scholar %}
   <p style="margin-top: 1rem; font-size: 0.95em; white-space: nowrap;">
     {% assign link_parts = "" %}
