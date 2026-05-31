@@ -175,30 +175,6 @@ permalink: /team/
 
 {% endfor %}
 
-## <span style="color: #8C1D40;"><strong>Robots</strong></span>
-
-{% for robot in site.data.robots %}
-<div class="row">
-<div class="col-sm-12 clearfix">
-
-  <img src="{{ site.url }}{{ site.baseurl }}/images/teampic/{{ robot.photo }}" 
-       class="img-responsive" width="20%" style="float:left; margin-right:20px;" />
-
-  <h4 style="font-size: 2.4rem; font-weight:600; margin-top:32px;">
-    {{ robot.name }}
-  </h4>
-
-<p style="margin-top:10px;">
-  <a href="{{ site.url }}{{ site.baseurl }}{{ robot.url }}" 
-     style="font-size:0.95em; display:inline-block; text-decoration:none;">
-    More Details
-  </a>
-</p>
-
-</div>
-</div>
-<div style="margin-bottom:30px;"></div>
-{% endfor %}
 
 <!-- ## <span style="color: #8C1D40;"><strong>Former visitors, BSc/ MSc students</strong></span>
 <div class="row">

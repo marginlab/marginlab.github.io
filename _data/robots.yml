@@ -1,3 +1,27 @@
 - name: RAVEN II Surgical Robot
   photo: raven2.png
-  url: /team/raven2/
+  url: /robots/raven2/
+  description: "A cable-driven open research platform for surgical robotics and automation."
+  featured: true
+
+- name: Franka Research Robot FR3
+  photo: franka.png
+  url: /robots/franka/
+  description: "A dual-arm collaborative robotic platform with advanced force control for manipulation and robotics research."
+  featured: true
+
+- name: Haptic Device (Phantom Touch)
+  photo: touch.png
+  url: /robots/touch/
+  description: "A force-feedback device for teleoperation and haptic interaction research."
+  featured: true
+
+- name: High-Performance AI Workstation
+  photo: workstation.png
+  url: /robots/exxac_workstation/
+  featured: false
+
+- name: Bambu Lab X1C 3D Printer
+  photo: x1c.png
+  url: /robots/bambu_lab_X1C/
+  featured: false
