@@ -1,6 +1,6 @@
 - name: Jiajun Cheng
   photo: jiajun.png
-  info: School of Electrical, Computer and Energy Engineering (ECEE)
+  info: School of Electrical, Computer and Energy Engineering
   email: ccheng58@asu.edu
   number_educ: 3
   education1: M.S. Computer Engineering (Electrical Engineering), Arizona State University, USA
@@ -11,7 +11,7 @@
 
 - name: Haokai Xu
   photo: haokai.jpg
-  info: School of Electrical, Computer and Energy Engineering (ECEE)
+  info: School of Electrical, Computer and Energy Engineering
   email: haokaixu@asu.edu
   number_educ: 3
   education1: M.S. Electronic and Computer Engineering, Georgia Institution of Technology, USA
@@ -22,7 +22,7 @@
 
 - name: Hiu Ching (Athena) Cheung
   photo: athena.png
-  info: Joining Fall 2026; School of Manufacturing Systems and Networks (MSN)
+  info: Joining Fall 2026; School of Manufacturing Systems and Networks
   email: hcheung6@asu.edu
   number_educ: 2
   education1: MPhil. Aeronautical and Aviation Engineering, The Hong Kong Polytechnic University

@@ -26,17 +26,11 @@ We develop machine learning and robotic systems to support robotic-assisted and 
             <img src="{{ site.url }}{{ site.baseurl }}/images/slider7001400/RoboSoft2026.png" alt="RoboSoft2026" />
         </div>
         <div class="item">
-            <img src="{{ site.url }}{{ site.baseurl }}/images/slider7001400/JiajunMLday.jpg" alt="Slide 1" />
+            <img src="{{ site.url }}{{ site.baseurl }}/images/slider7001400/JiajunMLday.png" alt="Slide 1" />
         </div>
         <div class="item">
-            <img src="{{ site.url }}{{ site.baseurl }}/images/slider7001400/raven.png" alt="Slide 2" /> 
-        </div>
-        <div class="item">
-            <img src="{{ site.url }}{{ site.baseurl }}/images/slider7001400/endo_seg.png" alt="Slide 3" />
+            <img src="{{ site.url }}{{ site.baseurl }}/images/slider7001400/combo.png" alt="Slide 2" />
         </div> 
-        <div class="item">
-            <img src="{{ site.url }}{{ site.baseurl }}/images/slider7001400/manipulation.png" alt="Slide 4" />
-        </div>
     </div>
   <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
