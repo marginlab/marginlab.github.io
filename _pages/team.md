@@ -69,11 +69,7 @@ permalink: /team/
 {% assign number_printed = 0 %}
 {% for member in site.data.phds %}
 
-{% assign even_odd = number_printed | modulo: 2 %}
-
-{% if even_odd == 0 %}
 <div class="row">
-{% endif %}
 
 <div class="col-sm-12 clearfix">
   <img src="{{ site.url }}{{ site.baseurl }}/images/teampic/{{ member.photo }}" class="img-responsive" width="20%" style="float: left" />
@@ -117,27 +113,16 @@ permalink: /team/
 
 {% assign number_printed = number_printed | plus: 1 %}
 
-{% if even_odd == 1 %}
 </div>
-{% endif %}
 
 {% endfor %}
-
-{% assign even_odd = number_printed | modulo: 2 %}
-{% if even_odd == 1 %}
-</div>
-{% endif %}
 
 
 ## <span style="color: #8C1D40;"><strong>Master and Bachelor Students</strong></span>
 {% assign number_printed = 0 %}
 {% for member in site.data.ms_and_undergrad %}
 
-{% assign even_odd = number_printed | modulo: 2 %}
-
-{% if even_odd == 0 %}
 <div class="row">
-{% endif %}
 
 <div class="col-sm-12 clearfix">
   <img src="{{ site.url }}{{ site.baseurl }}/images/teampic/{{ member.photo }}" class="img-responsive" width="20%" style="float: left" />
@@ -186,16 +171,9 @@ permalink: /team/
 
 {% assign number_printed = number_printed | plus: 1 %}
 
-{% if even_odd == 1 %}
 </div>
-{% endif %}
 
 {% endfor %}
-
-{% assign even_odd = number_printed | modulo: 2 %}
-{% if even_odd == 1 %}
-</div>
-{% endif %}
 
 ## <span style="color: #8C1D40;"><strong>Robots</strong></span>
 
