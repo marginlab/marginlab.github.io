@@ -11,7 +11,7 @@ breadcrumb:
 
 # Robot Learning & Embodied AI
 
-We work on robot learning, imitation learning, vision-language-action models, and embodied AI for surgical and manipulation tasks.
+We work on robot learning, vision-language-action (VLA) models, and embodied AI for surgical and manipulation tasks.
 
 ---
 
