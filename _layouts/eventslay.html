@@ -1,0 +1,99 @@
+---
+layout: default
+---
+<style>
+.events-header h1 { font-size: 1.8em; font-weight: bold; color: #8C1D40; margin-bottom: 32px; }
+.events-timeline { position: relative; }
+.events-timeline::before { content: ''; position: absolute; top: 0; bottom: 0; left: 140px; width: 2px; background: #8C1D40; z-index: 0; }
+.event-row { display: flex; align-items: flex-start; margin-bottom: 56px; position: relative; }
+.event-year-col { width: 110px; flex-shrink: 0; padding-top: 20px; }
+.event-year { font-size: 2em; font-weight: bold; color: #8C1D40; line-height: 1.1; }
+.event-status-upcoming { font-size: 0.82em; color: #8C1D40; margin-top: 2px; }
+.event-status-past { font-size: 0.82em; color: #8C1D40; margin-top: 2px; }
+.event-timeline-col { width: 60px; flex-shrink: 0; position: relative; overflow: visible; }
+.tl-circle { width: 48px; height: 48px; border-radius: 50%; background: #8C1D40; display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; margin: 16px auto 0; }
+.tl-connector { position: absolute; top: calc(16px + 24px); left: calc(50% + 24px); right: -22px; height: 2px; background: #8C1D40; z-index: 1; }
+.tl-connector-dot { position: absolute; right: -5px; top: -4px; width: 9px; height: 9px; border-radius: 50%; background: #8C1D40; }
+.tl-between-dot { position: absolute; bottom: -28px; left: 50%; transform: translateX(-50%); width: 9px; height: 9px; border-radius: 50%; background: #8C1D40; z-index: 1; }
+.event-card-col { flex: 1; padding-left: 28px; }
+.event-card { border: 1px solid #e4e4e4; border-radius: 12px; padding: 24px 28px; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.06); margin-top: 0; }
+.event-card-inner { display: flex; gap: 24px; align-items: flex-start; }
+.event-card-img { flex: 0 0 60%; }
+.event-card-img img { width: 100%; height: auto; border-radius: 8px; margin: 0; box-shadow: none; }
+.event-card-content { flex: 1; }
+.event-card h3 { margin: 0 0 10px; font-size: 1.2em; }
+.event-card h3 a { color: #8C1D40; text-decoration: none; font-weight: bold; }
+.event-card h3 a:hover { text-decoration: underline; }
+.event-card p { margin: 0 0 8px; font-size: 0.92em; color: #333; }
+.event-location { display: flex; align-items: center; gap: 5px; font-size: 0.9em; color: #444; margin: 10px 0; }
+.event-divider { border: none; border-top: 2px solid #e8c88a; margin: 14px 0; width: 40px; }
+.event-links a { color: #0078D4; text-decoration: none; font-size: 0.9em; margin-right: 8px; }
+.event-links a:hover { text-decoration: underline; }
+.event-links .link-sep { color: #aaa; margin-right: 8px; }
+#gridid .event-card-img img { margin: 0; border-radius: 8px; box-shadow: none; }
+</style>
+
+<div id="gridid" class="col-sm-12">
+
+<div class="events-header">
+<h1>Events &amp; Workshops</h1>
+</div>
+
+<div class="events-timeline">
+
+<div class="event-row">
+<div class="event-year-col">
+<div class="event-year">2026</div>
+<div class="event-status-upcoming">Upcoming</div>
+</div>
+<div class="event-timeline-col">
+<div class="tl-circle"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+<div class="tl-connector"><div class="tl-connector-dot"></div></div>
+</div>
+<div class="event-card-col">
+<div class="event-card">
+<div class="event-card-content">
+<h3><a href="https://sites.google.com/view/iros-elsr-2026" target="_blank">ELSR 2026 @ IROS 2026</a></h3>
+<p>2nd International Workshop on the Evolving Landscape of Surgical Robotics</p>
+<div class="event-location"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#8C1D40"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Pittsburgh, USA</div>
+<p style="color: #999; font-weight: bold; font-style: italic;">More information coming soon!</p>
+</div>
+</div>
+</div>
+</div>
+
+<div class="event-row">
+<div class="event-year-col">
+<div class="event-year">2025</div>
+<div class="event-status-past">Past Event</div>
+</div>
+<div class="event-timeline-col">
+<div class="tl-circle"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+<div class="tl-connector"><div class="tl-connector-dot"></div></div>
+</div>
+<div class="event-card-col">
+<div class="event-card">
+<div class="event-card-inner">
+<div class="event-card-img">
+<img src="{{ site.baseurl }}/images/elsr2025.jpg" alt="ELSR 2025" />
+</div>
+<div class="event-card-content">
+<h3><a href="https://sites.google.com/view/icra2025-workshop-clsr" target="_blank">ELSR 2025 @ ICRA 2025</a></h3>
+<p>1st International Workshop on the Evolving Landscape of Surgical Robotics</p>
+<div class="event-location"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#8C1D40"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Atlanta, USA</div>
+<div class="event-links">
+<a href="https://sites.google.com/view/icra2025-workshop-clsr" target="_blank">Website</a>
+<span class="link-sep">|</span>
+<a href="https://www.youtube.com/playlist?list=PLFDqzhAvEeyE-eWUshDn2YorFLcxlzNLS" target="_blank">Invited Talks</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<div style="margin-bottom: 40px;"></div>
+
+</div>

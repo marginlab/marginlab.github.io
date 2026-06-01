@@ -1,0 +1,30 @@
+---
+layout: default
+---
+<style>
+.lablife-collage { display: flex; column-gap: 28px; row-gap: 4px; padding: 24px 0; align-items: flex-start; }
+.lablife-col { display: flex; flex-direction: column; gap: 4px; }
+.lablife-col-left { flex: 4; }
+.lablife-col-mid  { flex: 3; }
+.lablife-col-right { flex: 5; }
+.lablife-collage img { width: 100%; height: auto; border-radius: 4px; margin: 0; display: block; box-shadow: 0 4px 14px rgba(0,0,0,0.13); }
+@media (max-width: 768px) {
+.lablife-collage { flex-wrap: wrap; }
+.lablife-col-left, .lablife-col-mid, .lablife-col-right { flex: 1 1 45%; }
+}
+</style>
+
+<div id="gridid" class="col-sm-12">
+<div class="lablife-collage">
+<div class="lablife-col lablife-col-left">
+<img src="{{ site.baseurl }}/images/teampic/grandcanyon.jpg" alt="" />
+<img src="{{ site.baseurl }}/images/teampic/athena_robosoft26.jpg" alt="" />
+</div>
+<div class="lablife-col lablife-col-mid">
+<img src="{{ site.baseurl }}/images/teampic/robot_setup.jpg" alt="" />
+</div>
+<div class="lablife-col lablife-col-right">
+<img src="{{ site.baseurl }}/images/teampic/20260312_175110.jpg" alt="" />
+</div>
+</div>
+</div>
