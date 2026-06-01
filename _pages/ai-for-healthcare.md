@@ -1,14 +1,13 @@
 ---
-title: "MARGIN Lab - Research"
+title: "MARGIN Lab - AI for Healthcare"
 layout: textlay
-excerpt: "MARGIN Lab -- Research"
+excerpt: "MARGIN Lab -- AI for Healthcare"
 sitemap: false
-permalink: /research/
+permalink: /AI-for-healthcare/
 ---
 
-# Research
-
-Welcome to the **MARGIN Lab** research page.  
+# AI for Healthcare
+ 
 We work on surgical AI, VLMs, explainability, and reasoning-aware perception.
 
 ---

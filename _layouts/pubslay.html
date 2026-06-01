@@ -1,0 +1,118 @@
+---
+layout: default
+---
+<style>
+#gridid img { margin: 0; border-radius: 0; box-shadow: none; }
+.pub-featured-row { display: flex; flex-wrap: wrap; margin-left: -8px; margin-right: -8px; }
+.pub-featured-row > [class*="col-"] { display: flex; flex-direction: column; padding-left: 8px; padding-right: 8px; }
+.pub-card { border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; margin-bottom: 24px; background: #fff; display: flex; flex-direction: column; flex: 1; }
+.pub-card-img { width: 100%; height: 180px; object-fit: contain; background: #ffffff; display: block; margin: 0; border-radius: 0; }
+.pub-card-body { padding: 14px 16px 16px; display: flex; flex-direction: column; flex: 1; }
+.pub-card-title { font-weight: bold; font-size: 0.95em; line-height: 1.4; margin-bottom: 6px; }
+.pub-card-title a { color: #0078D4; text-decoration: none; }
+.pub-card-title a:hover { text-decoration: underline; }
+.pub-authors { font-size: 0.84em; color: #555; margin: 0 0 8px; }
+.pub-badges { margin-bottom: 10px; display: flex; flex-wrap: wrap; gap: 6px 6px; }
+.pub-badge { display: inline-block; padding: 2px 9px; border-radius: 4px; font-size: 0.78em; }
+.pub-badge-venue { background: #f0f0f0; color: #555; }
+.pub-badge-venue-conf { background: #cce5ff; color: #0056b3; }
+.pub-badge-tag { background: #fff3cd; color: #a05a00; }
+.pub-badge-key { background: #d4edda; color: #276c3d; }
+.pub-links { margin-top: auto; padding-top: 10px; display: flex; align-items: center; justify-content: space-between; }
+.pub-links a { font-size: 0.84em; color: #333; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; }
+.pub-links a:hover { color: #0078D4; }
+.pub-links a svg { flex-shrink: 0; }
+.pub-all-list { margin-top: 8px; }
+.pub-all-row { display: flex; align-items: flex-start; padding: 16px 0; border-bottom: 1px solid #f0f0f0; }
+.pub-all-year { width: 58px; font-weight: bold; color: #8C1D40; font-size: 1.2em; flex-shrink: 0; padding-top: 2px; }
+.pub-all-timeline { width: 28px; flex-shrink: 0; display: flex; justify-content: center; padding-top: 6px; }
+.pub-all-dot-circle { width: 9px; height: 9px; border-radius: 50%; background: #c0c0c0; flex-shrink: 0; }
+.pub-all-content { flex: 1; min-width: 0; padding: 0 12px; }
+.pub-all-title { font-size: 0.93em; color: #1a1a1a; font-weight: 600; line-height: 1.4; }
+.pub-all-title a { color: #1a1a1a; text-decoration: none; }
+.pub-all-title a:hover { color: #0078D4; }
+.pub-all-meta { font-size: 0.8em; color: #999; margin-top: 4px; }
+.pub-all-links { margin-top: 6px; display: flex; gap: 14px; }
+.pub-all-links a { font-size: 0.78em; color: #555; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; }
+.pub-all-links a:hover { color: #0078D4; }
+.pub-all-venue { width: 140px; text-align: right; flex-shrink: 0; font-size: 0.84em; padding-top: 2px; }
+.pub-all-venue-conf { font-weight: bold; color: #0078D4; }
+.pub-all-venue-conf a { color: #0078D4; text-decoration: none; }
+.pub-all-venue-conf a:hover { text-decoration: underline; }
+.pub-all-venue-arxiv { color: #999; }
+.pub-all-venue-arxiv a { color: #999; text-decoration: none; }
+.pub-all-venue-arxiv a:hover { text-decoration: underline; }
+.btn-viewall { display: inline-block; border: 1.5px solid #8C1D40; color: #8C1D40; padding: 9px 28px; border-radius: 20px; text-decoration: none; font-size: 0.92em; }
+.btn-viewall:hover { background: #8C1D40; color: #fff; text-decoration: none; }
+</style>
+
+<div id="gridid" class="col-sm-12">
+
+<h2><span style="color: #8C1D40;"><strong>Recent Publications</strong></span></h2>
+
+<div class="row pub-featured-row">
+{% for publi in site.data.publist %}
+{% if publi.highlight == 1 %}
+<div class="col-sm-4">
+<div class="pub-card">
+<a href="{{ publi.link.url }}" target="_blank"><img src="{{ site.url }}{{ site.baseurl }}/images/pubpic/{{ publi.image }}" class="pub-card-img" alt="{{ publi.title }}" /></a>
+<div class="pub-card-body">
+<div class="pub-card-title"><a href="{{ publi.link.url }}" target="_blank">{{ publi.title }}</a></div>
+{% assign al = publi.authors | split: ", " %}
+{% if al.size > 3 %}<p class="pub-authors">{{ al[0] }}, {{ al[1] }}, {{ al[2] }}, et al.</p>{% else %}<p class="pub-authors">{{ publi.authors }}</p>{% endif %}
+<div class="pub-badges">
+{% if publi.link.display contains "arXiv" %}<span class="pub-badge pub-badge-venue">{{ publi.link.display }}</span>{% else %}<span class="pub-badge pub-badge-venue-conf">{{ publi.link.display }}</span>{% endif %}
+{% for tag in publi.key_tags %}<span class="pub-badge pub-badge-key">{{ tag }}</span>{% endfor %}
+{% for tag in publi.tags %}<span class="pub-badge pub-badge-tag">{{ tag }}</span>{% endfor %}
+</div>
+<div class="pub-links">
+<a href="{{ publi.link.url }}" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg> Paper</a>
+{% if publi.data and publi.code %}<a href="{{ publi.data }}" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg> Data</a><a href="{{ publi.code }}" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c.998.005 2.003.138 2.943.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg> Code</a>{% elsif publi.code and publi.video %}<a href="{{ publi.video }}" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg> Video</a><a href="{{ publi.code }}" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c.998.005 2.003.138 2.943.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg> Code</a>{% elsif publi.code %}<a href="{{ publi.code }}" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c.998.005 2.003.138 2.943.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg> Code</a>{% elsif publi.video %}<a href="{{ publi.video }}" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg> Video</a>{% endif %}
+{% if publi.project %}<a href="{{ publi.project }}" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Project</a>{% endif %}
+</div>
+</div>
+</div>
+</div>
+{% endif %}
+{% endfor %}
+</div>
+
+<p>&nbsp;</p>
+
+<h2 id="all-publications"><span style="color: #8C1D40;"><strong>All Publications</strong></span></h2>
+
+{% assign shown_year = 0 %}
+<div class="pub-all-list">
+{% for publi in site.data.publist limit:15 %}
+<div class="pub-all-row">
+{% if publi.year != shown_year %}<div class="pub-all-year">{{ publi.year }}</div>{% assign shown_year = publi.year %}{% else %}<div class="pub-all-year"></div>{% endif %}
+<div class="pub-all-timeline"><div class="pub-all-dot-circle"></div></div>
+<div class="pub-all-content">
+<div class="pub-all-title"><a href="{{ publi.link.url }}" target="_blank">{{ publi.title }}</a></div>
+<div class="pub-all-meta">{{ publi.authors }}</div>
+{% if publi.video or publi.code or publi.project %}<div class="pub-all-links">{% if publi.video %}<a href="{{ publi.video }}" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg> Video</a>{% endif %}{% if publi.code %}<a href="{{ publi.code }}" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c.998.005 2.003.138 2.943.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg> Code</a>{% endif %}{% if publi.project %}<a href="{{ publi.project }}" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Project</a>{% endif %}</div>{% endif %}
+</div>
+{% if publi.link.display contains "arXiv" %}<div class="pub-all-venue pub-all-venue-arxiv">{{ publi.link.display }}</div>{% else %}<div class="pub-all-venue pub-all-venue-conf">{{ publi.link.display }}</div>{% endif %}
+</div>
+{% endfor %}
+</div>
+
+<div style="text-align: center; margin-top: 40px; margin-bottom: 28px;">
+<a href="{{ site.url }}{{ site.baseurl }}/all-publications/" class="btn-viewall">View Full List of Publications &rarr;</a>
+</div>
+
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.pub-all-meta').forEach(function(el) {
+    var lineHeight = parseFloat(window.getComputedStyle(el).lineHeight);
+    if (el.scrollHeight > lineHeight * 2 + 1) {
+      var authors = el.textContent.trim().split(', ');
+      for (var i = authors.length - 1; i > 1; i--) {
+        el.textContent = authors.slice(0, i).join(', ') + ', et al.';
+        if (el.scrollHeight <= lineHeight * 2 + 1) break;
+      }
+    }
+  });
+});
+</script>

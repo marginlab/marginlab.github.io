@@ -18,7 +18,7 @@ class: robot-page
 
 ---
 
-### <span style="color: #8C1D40;">Research Applications</span>
+### <span style="color: #8C1D40;">Projects</span>
 
 - Rapid prototyping of research hardware
 - Sensor and custom device fabrication

@@ -19,7 +19,7 @@ permalink: /contact
   Find Us
   </h3>
   <p>
-    <strong>Goldwater Center for Science and Engineering</strong><br>
+    <strong>Goldwater Center 381</strong><br>
     650 E. Tyler Mall<br>
     Tempe, AZ 85287-5706
   </p>

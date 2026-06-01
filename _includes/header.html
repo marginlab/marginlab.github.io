@@ -19,8 +19,15 @@
 		<li><a href="{{ site.url }}{{ site.baseurl }}/">Home</a></li>
 		<li><a href="{{ site.url }}{{ site.baseurl }}/team">Team</a></li>
 		<li><a href="{{ site.url }}{{ site.baseurl }}/robots">Robots</a></li>
-		<li><a href="{{ site.url }}{{ site.baseurl }}/research">Research</a></li>
-		<li><a href="{{ site.url }}{{ site.baseurl }}/publications">Publications</a></li>
+		<li class="dropdown">
+		  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Research <span class="caret"></span></a>
+		  <ul class="dropdown-menu">
+			<li><a href="{{ site.url }}{{ site.baseurl }}/AI-for-healthcare">AI for Healthcare</a></li>
+			<li><a href="{{ site.url }}{{ site.baseurl }}/multimodal-sensing">Multimodal Sensing & Perception</a></li>
+			<li><a href="{{ site.url }}{{ site.baseurl }}/robot-learning">Robot Learning & Embodied AI</a></li>
+			<li><a href="{{ site.url }}{{ site.baseurl }}/publications">Publications</a></li>
+		  </ul>
+		</li>
 		<li><a href="{{ site.url }}{{ site.baseurl }}/events">Events</a></li>
 		<li><a href="{{ site.url }}{{ site.baseurl }}/opportunities">Opportunities</a></li>
 		<li><a href="{{ site.url }}{{ site.baseurl }}/contact">Contact</a></li>

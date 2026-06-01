@@ -26,7 +26,7 @@ class: robot-page
 
 ---
 
-### <span style="color: #8C1D40;">Research Applications</span>
+### <span style="color: #8C1D40;">Projects</span>
 
 - Surgical teleoperation research
 - Shared autonomy studies
