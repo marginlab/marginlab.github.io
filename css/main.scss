@@ -120,6 +120,319 @@ firstp {
   margin-left: 40px;
   margin-right: 40px;
 }
+
+/* ============================================================
+   Research page — project cards
+   ============================================================ */
+$asu-maroon: #8C1D40;
+$asu-gold:   #FFC627;
+$ink:        #1d2230;
+$muted:      #5b6478;
+$line:       #e6e8ee;
+$card-bg:    #ffffff;
+$page-bg:    #f7f8fb;
+
+.research-intro {
+  max-width: 880px;
+  margin: 4px auto 28px;
+  text-align: center;
+
+  h1 {
+    margin: 0 0 8px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: $ink;
+  }
+  .lead {
+    color: $muted;
+    font-size: 17px;
+    line-height: 1.6;
+    margin: 0;
+  }
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 22px;
+  margin: 18px 0 36px;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  background: $card-bg;
+  border: 1px solid $line;
+  border-radius: 14px;
+  overflow: hidden;
+  text-decoration: none !important;
+  color: $ink;
+  box-shadow: 0 1px 2px rgba(20, 25, 40, 0.04);
+  transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 32px rgba(20, 25, 40, 0.10);
+    border-color: rgba($asu-maroon, 0.35);
+    text-decoration: none;
+  }
+
+  &__thumb {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #eef0f4;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      margin: 0;        // override global img margins
+      border-radius: 0; // override global img border-radius
+      transition: transform 0.4s ease;
+    }
+  }
+
+  &:hover &__thumb img { transform: scale(1.03); }
+
+  &__body {
+    padding: 16px 18px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+  }
+
+  &__venue {
+    display: inline-block;
+    align-self: flex-start;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    color: $asu-maroon;
+    background: rgba($asu-maroon, 0.08);
+    border: 1px solid rgba($asu-maroon, 0.18);
+    padding: 3px 8px;
+    border-radius: 999px;
+  }
+
+  &__title {
+    margin: 2px 0 0;
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: -0.2px;
+    color: $ink;
+  }
+
+  &__summary {
+    margin: 0;
+    color: $muted;
+    font-size: 14.5px;
+    line-height: 1.55;
+  }
+
+  &__cta {
+    margin-top: auto;
+    padding-top: 10px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: $asu-maroon;
+  }
+}
+
+.project-grid__placeholder {
+  margin: 8px 0 24px;
+  padding: 22px 24px;
+  border: 1px dashed $line;
+  border-radius: 14px;
+  background: $page-bg;
+  text-align: center;
+  color: $muted;
+
+  h3 { margin: 0 0 6px; font-size: 16px; color: $ink; font-weight: 800; }
+  p  { margin: 0; font-size: 14px; }
+}
+
+/* ============================================================
+   Individual project page
+   ============================================================ */
+.project-page {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 4px 4px 40px;
+
+  &__back {
+    display: inline-block;
+    margin-bottom: 14px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: $asu-maroon;
+    text-decoration: none;
+    &:hover { text-decoration: underline; }
+  }
+
+  &__header {
+    text-align: center;
+    padding: 6px 0 6px;
+  }
+
+  &__badge {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    color: $asu-maroon;
+    background: rgba($asu-maroon, 0.08);
+    border: 1px solid rgba($asu-maroon, 0.20);
+    padding: 5px 12px;
+    border-radius: 999px;
+  }
+
+  &__title {
+    margin: 14px 0 6px;
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: -0.8px;
+    line-height: 1.1;
+    color: $ink;
+  }
+
+  &__subtitle {
+    margin: 0 auto 6px;
+    max-width: 760px;
+    color: $muted;
+    font-size: 17px;
+    font-weight: 500;
+  }
+
+  &__authors {
+    margin: 10px auto 0;
+    max-width: 820px;
+    font-size: 14.5px;
+    color: $ink;
+    font-weight: 600;
+  }
+
+  &__btns {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 22px 0 6px;
+  }
+
+  &__tagline {
+    margin: 26px auto 6px;
+    max-width: 820px;
+    color: $muted;
+    font-size: 16px;
+    line-height: 1.7;
+    text-align: center;
+  }
+}
+
+.project-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: 1px solid $line;
+  background: #fff;
+  color: $ink !important;
+  font-weight: 700;
+  text-decoration: none !important;
+  box-shadow: 0 1px 2px rgba(20, 25, 40, 0.04);
+  transition: transform 0.08s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(20, 25, 40, 0.08);
+    border-color: rgba($asu-maroon, 0.4);
+  }
+
+  &__ic {
+    width: 14px; height: 14px;
+    border-radius: 4px;
+    background: linear-gradient(135deg, $asu-maroon, $asu-gold);
+  }
+}
+
+.project-section {
+  margin-top: 36px;
+
+  h2 {
+    margin: 0 0 14px;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+    color: $ink;
+    border-bottom: 1px solid $line;
+    padding-bottom: 8px;
+  }
+
+  p {
+    color: lighten($ink, 10%);
+    font-size: 15.5px;
+    line-height: 1.75;
+    margin: 0 0 10px;
+  }
+}
+
+.project-figure {
+  margin: 16px 0 22px;
+  border: 1px solid $line;
+  border-radius: 14px;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(20, 25, 40, 0.04);
+
+  &__head {
+    padding: 10px 16px;
+    border-bottom: 1px solid $line;
+    background: $page-bg;
+    font-size: 14px;
+  }
+
+  &__imgwrap {
+    padding: 12px;
+    background: #fff;
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+      border: 1px solid $line;
+      margin: 0;
+    }
+  }
+
+  &__caption {
+    padding: 10px 16px 14px;
+    color: $muted;
+    font-size: 13.5px;
+  }
+}
+
+.project-bibtex {
+  background: #0f1424;
+  color: #e6ecff;
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: 13px;
+  line-height: 1.55;
+  overflow-x: auto;
+  border: 1px solid #1a2138;
+}
+
+@media (max-width: 640px) {
+  .project-page__title { font-size: 32px; }
+  .project-page__subtitle { font-size: 15px; }
+}
 /* -------- Logo Styling (fixed for one-row header) -------- */
 .navbar-brand {
   display: flex;

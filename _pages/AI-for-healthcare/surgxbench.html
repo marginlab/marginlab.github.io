@@ -1,0 +1,102 @@
+---
+title: "SurgXBench | MARGIN Lab"
+layout: textlay
+excerpt: "SurgXBench — Explainable Vision-Language Model Benchmark for Surgery"
+sitemap: false
+permalink: /AI-for-healthcare/surgxbench/
+---
+
+<div class="project-page">
+
+  <a class="project-page__back" href="{{ site.baseurl }}/AI-for-healthcare">&larr; AI for Healthcare</a>
+
+  <div class="project-page__header">
+    <span class="project-page__badge">WACV 2026 — Accepted</span>
+    <h1 class="project-page__title">SurgXBench</h1>
+    <p class="project-page__subtitle">
+      Explainable Vision-Language Model Benchmark for Surgery
+    </p>
+    <p class="project-page__authors">
+      Jiajun Cheng, Xianwu Zhao, Sainan Liu, Xiaofan Yu,
+      Ravi Prakash, Patrick Codd, Jonathan Katz, Shan Lin
+    </p>
+
+    <div class="project-page__btns">
+      <a class="project-btn" href="https://arxiv.org/abs/2505.10764" target="_blank" rel="noopener">
+        <span class="project-btn__ic"></span> Paper
+      </a>
+      <a class="project-btn" href="https://github.com/jiajun344/SurgXBench-Explainable-Vision-Language-Model-Benchmark-for-Surgery" target="_blank" rel="noopener">
+        <span class="project-btn__ic"></span> Code
+      </a>
+    </div>
+  </div>
+
+  <div class="project-page__tagline">
+    SurgXBench introduces the first explainability-driven benchmark for Vision-Language
+    Models in robotic surgery. We evaluate general &amp; surgical VLMs for instrument &amp;
+    action recognition, visualize model reasoning using Grad-CAM + causal graphs, and
+    introduce attention-alignment metrics to assess whether models rely on clinically
+    meaningful visual cues. Results reveal a gap between accuracy and reasoning, motivating
+    the need for more grounded supervision in surgical VLMs.
+  </div>
+
+  <div class="project-section">
+    <h2>Figures</h2>
+
+    <div class="project-figure">
+      <div class="project-figure__head">
+        <strong>Instrument Classification Results</strong>
+      </div>
+      <div class="project-figure__imgwrap">
+        <img src="{{ site.baseurl }}/images/projects/surgxbench/ins_score.png" alt="Instrument classification results across VLMs">
+      </div>
+      <div class="project-figure__caption">
+        Summary performance across evaluated VLMs using our metrics.
+      </div>
+    </div>
+
+    <div class="project-figure">
+      <div class="project-figure__head">
+        <strong>Grad-CAM + Token-level Causal Graph</strong>
+      </div>
+      <div class="project-figure__imgwrap">
+        <img src="{{ site.baseurl }}/images/projects/surgxbench/token_graph.png" alt="Grad-CAM and token-level causal graph">
+      </div>
+      <div class="project-figure__caption">
+        Causal graph analysis for autoregressive model.
+      </div>
+    </div>
+  </div>
+
+  <div class="project-section">
+    <h2>Abstract</h2>
+    <p>
+      Innovations in digital intelligence are transforming robotic surgery with more informed decision-making.
+      Real-time awareness of surgical instrument presence and actions (e.g., cutting tissue) is essential for such systems.
+      Yet, despite decades of research, most machine learning models for this task are trained on small datasets and still
+      struggle to generalize. Recently, Vision-Language Models (VLMs) have brought transformative advances in reasoning across
+      visual and textual modalities. Their unprecedented generalization capabilities suggest great potential for advancing
+      intelligent robotic surgery. However, surgical VLMs remain under-explored, and existing models show limited performance,
+      highlighting the need for benchmark studies to assess their capabilities and limitations and to inform future development.
+      To this end, we benchmark the zero-shot performance of several advanced VLMs on two public robotic-assisted laparoscopic
+      datasets for instrument and action classification. Beyond standard evaluation, we integrate explainable AI to visualize
+      VLM attention and uncover causal explanations behind their predictions. This provides a previously underexplored
+      perspective in this field for evaluating the reliability of model predictions. We also propose several explainability
+      analysis-based metrics to complement standard evaluations. Our analysis reveals that surgical VLMs, despite domain-specific
+      training, often rely on weak contextual cues rather than clinically relevant visual evidence, highlighting the need for
+      stronger visual and reasoning supervision in surgical applications.
+    </p>
+  </div>
+
+  <div class="project-section">
+    <h2>Citation</h2>
+<pre class="project-bibtex"><code>@inproceedings{cheng2026surgxbench,
+  title     = {SurgXBench: Explainable Vision-Language Model Benchmark for Surgery},
+  author    = {Cheng, Jiajun and Zhao, Xianwu and Liu, Sainan and Yu, Xiaofan and
+               Prakash, Ravi and Codd, Patrick and Katz, Jonathan and Lin, Shan},
+  booktitle = {WACV},
+  year      = {2026}
+}</code></pre>
+  </div>
+
+</div>

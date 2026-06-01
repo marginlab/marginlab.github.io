@@ -1,0 +1,29 @@
+# MARGIN Lab — Research Projects
+# Each entry becomes a card on the matching research-area page.
+#
+# Fields:
+#   title      Project name shown on the card
+#   category   One of: AI-for-healthcare, multimodal-sensing, robot-learning
+#              Used to filter which research-area page shows the card.
+#   slug       Short id used to build URLs — must match the page file name
+#   venue      Short venue tag, e.g. "WACV 2026", "Under review"
+#   thumb      Image path under /images/  (square or 16:9 looks best)
+#   summary    1–2 sentence pitch shown on the card
+#   authors    Optional: author list (shown on project page; cards can omit)
+#   paper      External paper URL (arxiv / publisher)
+#   code       External code URL
+#   page       Internal Jekyll permalink for the full project page
+
+- title: "SurgXBench"
+  category: AI-for-healthcare
+  slug: surgxbench
+  venue: "WACV 2026"
+  thumb: SurgXBench(1).png
+  summary: >
+    The first explainability-driven benchmark for Vision-Language Models in
+    robotic surgery — Grad-CAM, causal graphs, and attention-alignment metrics
+    reveal a gap between accuracy and reasoning in current surgical VLMs.
+  authors: "Jiajun Cheng, Xianwu Zhao, Sainan Liu, Xiaofan Yu, Ravi Prakash, Patrick Codd, Jonathan Katz, Shan Lin"
+  paper: "https://arxiv.org/abs/2505.10764"
+  code:  "https://github.com/jiajun344/SurgXBench-Explainable-Vision-Language-Model-Benchmark-for-Surgery"
+  page:  "/AI-for-healthcare/surgxbench/"
