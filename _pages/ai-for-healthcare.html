@@ -1,0 +1,33 @@
+---
+title: "MARGIN Lab - AI for Healthcare"
+layout: textlay
+excerpt: "MARGIN Lab -- AI for Healthcare"
+sitemap: false
+permalink: /AI-for-healthcare/
+---
+
+<div class="research-intro">
+  <h1>AI for Healthcare</h1>
+  <p class="lead">We work on surgical AI, VLMs, explainability, and reasoning-aware perception.</p>
+</div>
+
+<div class="project-grid">
+{% assign projects = site.data.projects | where: "category", "AI-for-healthcare" %}
+{% for proj in projects %}
+  <a class="project-card" href="{{ site.baseurl }}{{ proj.page }}">
+    <div class="project-card__thumb">
+      <img src="{{ site.baseurl }}/images/{{ proj.thumb }}" alt="{{ proj.title }}">
+    </div>
+    <div class="project-card__body">
+      {% if proj.venue %}<span class="project-card__venue">{{ proj.venue }}</span>{% endif %}
+      <h3 class="project-card__title">{{ proj.title }}</h3>
+      <p class="project-card__summary">{{ proj.summary }}</p>
+      <span class="project-card__cta">Read more &rarr;</span>
+    </div>
+  </a>
+{% endfor %}
+</div>
+
+<div class="project-grid__placeholder">
+  <h3>More work coming soon</h3>
+</div>
