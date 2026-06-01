@@ -4,6 +4,8 @@ layout: textlay
 excerpt: "Openings"
 sitemap: false
 permalink: /opportunities
+breadcrumb:
+  - title: Opportunities
 ---
 
 ## <span style="color: #8C1D40;"><strong>Opportunities</strong></span>

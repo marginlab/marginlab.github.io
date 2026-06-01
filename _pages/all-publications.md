@@ -4,4 +4,9 @@ layout: allpubslay
 excerpt: "MARGIN Lab -- Full list of publications."
 sitemap: false
 permalink: /all-publications/
+breadcrumb:
+  - title: Research
+  - title: Publications
+    url: /publications/
+  - title: All Publications
 ---

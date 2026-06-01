@@ -1,0 +1,15 @@
+{% if page.breadcrumb %}
+<div style="padding: 8px 0 4px; font-size: 0.85em; color: #888;">
+<a href="{{ site.baseurl }}/" style="color: #888; text-decoration: none;">Home</a>
+{% for item in page.breadcrumb %}
+<span style="margin: 0 5px; color: #bbb;">›</span>
+{% if item.url and forloop.last == false %}
+<a href="{{ site.baseurl }}{{ item.url }}" style="color: #8C1D40; text-decoration: none; font-weight: bold;">{{ item.title }}</a>
+{% elsif item.url %}
+<a href="{{ site.baseurl }}{{ item.url }}" style="color: #8C1D40; text-decoration: none; font-weight: bold;">{{ item.title }}</a>
+{% else %}
+<span style="color: #555;">{{ item.title }}</span>
+{% endif %}
+{% endfor %}
+</div>
+{% endif %}

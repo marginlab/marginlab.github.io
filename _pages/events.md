@@ -4,4 +4,6 @@ layout: eventslay
 excerpt: "Workshops and Events organized by MARGIN Lab"
 sitemap: false
 permalink: /events/
+breadcrumb:
+  - title: Events
 ---

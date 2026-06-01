@@ -4,6 +4,8 @@ layout: textlay
 excerpt: "Robots at MARGIN Lab"
 sitemap: false
 permalink: /robots/
+breadcrumb:
+  - title: Robots
 ---
 
 ## <span style="color: #8C1D40;"><strong>Robots &amp; Devices</strong></span>
@@ -19,7 +21,7 @@ permalink: /robots/
 <img src="{{ site.url }}{{ site.baseurl }}/images/teampic/{{ robot.photo }}" style="width: 100%; height: 100%; object-fit: contain; object-position: top;" />
 </div>
 <div style="padding: 15px 20px 15px 20px; display: flex; flex-direction: column; flex: 1;">
-<h4 style="color: #8C1D40; font-weight: bold; margin-bottom: 8px;">{{ robot.name }}</h4>
+<h4 style="color: #8C1D40; font-weight: bold; margin-bottom: 8px;"><a href="{{ site.url }}{{ site.baseurl }}{{ robot.url }}" style="color: #8C1D40; text-decoration: none;">{{ robot.name }}</a></h4>
 {% if robot.description %}<p style="font-size: 0.9em; color: #555; margin-bottom: 10px;">{{ robot.description }}</p>{% endif %}
 <div style="margin-top: auto; text-align: right;">
 <a href="{{ site.url }}{{ site.baseurl }}{{ robot.url }}" style="color: #8C1D40; font-size: 0.9em; text-decoration: none;">More Details &#8594;</a>
@@ -37,7 +39,7 @@ permalink: /robots/
 <div style="display: flex; align-items: flex-start;">
 <img src="{{ site.url }}{{ site.baseurl }}/images/teampic/{{ robot.photo }}" style="width: 100px; height: 100px; object-fit: contain; margin-right: 12px; flex-shrink: 0;" />
 <div style="padding-top: 6px;">
-<h5 style="color: #8C1D40; font-weight: bold; font-size: 0.95em; margin-bottom: 5px;">{{ robot.name }}</h5>
+<h5 style="color: #8C1D40; font-weight: bold; font-size: 0.95em; margin-bottom: 5px;"><a href="{{ site.url }}{{ site.baseurl }}{{ robot.url }}" style="color: #8C1D40; text-decoration: none;">{{ robot.name }}</a></h5>
 {% if robot.description %}<p style="font-size: 0.82em; color: #555; margin-bottom: 8px;">{{ robot.description }}</p>{% endif %}
 <a href="{{ site.url }}{{ site.baseurl }}{{ robot.url }}" style="color: #8C1D40; font-size: 0.85em; text-decoration: none;">More Details &#8594;</a>
 </div>

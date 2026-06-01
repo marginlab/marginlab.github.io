@@ -4,6 +4,9 @@ layout: textlay
 excerpt: "MARGIN Lab -- Robot Learning & Embodied AI"
 sitemap: false
 permalink: /robot-learning/
+breadcrumb:
+  - title: Research
+  - title: Robot Learning & Embodied AI
 ---
 
 # Robot Learning & Embodied AI

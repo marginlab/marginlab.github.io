@@ -7,7 +7,7 @@
 		<span class="icon-bar"></span>
 		<span class="icon-bar"></span>
 	  </button>
-	
+
 	  <a class="navbar-brand" href="{{ site.baseurl }}/">
 	  <img src="{{ site.baseurl }}/images/logo_with_lab_name.png" class="brand-logo" alt="Lab Logo">
 		<span class="lab-name">MARGIN Lab</span>
@@ -16,10 +16,10 @@
 	</div>
 	<div class="collapse navbar-collapse" id="navbar-collapse-1">
 	  <ul class="nav navbar-nav navbar-right">
-		<li><a href="{{ site.url }}{{ site.baseurl }}/">Home</a></li>
-		<li><a href="{{ site.url }}{{ site.baseurl }}/team">Team</a></li>
-		<li><a href="{{ site.url }}{{ site.baseurl }}/robots">Robots</a></li>
-		<li class="dropdown">
+		<li{% if page.url == "/" %} class="active"{% endif %}><a href="{{ site.url }}{{ site.baseurl }}/">Home</a></li>
+		<li{% if page.url contains "/team" %} class="active"{% endif %}><a href="{{ site.url }}{{ site.baseurl }}/team">Team</a></li>
+		<li{% if page.url contains "/robots" %} class="active"{% endif %}><a href="{{ site.url }}{{ site.baseurl }}/robots">Robots</a></li>
+		<li class="dropdown{% if page.url contains '/AI-for-healthcare' or page.url contains '/multimodal-sensing' or page.url contains '/robot-learning' or page.url contains '/publications' or page.url contains '/all-publications' %} active{% endif %}">
 		  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Research <span class="caret"></span></a>
 		  <ul class="dropdown-menu">
 			<li><a href="{{ site.url }}{{ site.baseurl }}/AI-for-healthcare">AI for Healthcare</a></li>
@@ -28,10 +28,10 @@
 			<li><a href="{{ site.url }}{{ site.baseurl }}/publications">Publications</a></li>
 		  </ul>
 		</li>
-		<li><a href="{{ site.url }}{{ site.baseurl }}/events">Events</a></li>
-		<li><a href="{{ site.url }}{{ site.baseurl }}/opportunities">Opportunities</a></li>
-		<li><a href="{{ site.url }}{{ site.baseurl }}/contact">Contact</a></li>
-	    <li><a href="{{ site.url }}{{ site.baseurl }}/lab-life/">Lab Life</a></li>
+		<li{% if page.url contains "/events" %} class="active"{% endif %}><a href="{{ site.url }}{{ site.baseurl }}/events">Events</a></li>
+		<li{% if page.url contains "/opportunities" %} class="active"{% endif %}><a href="{{ site.url }}{{ site.baseurl }}/opportunities">Opportunities</a></li>
+		<li{% if page.url contains "/contact" %} class="active"{% endif %}><a href="{{ site.url }}{{ site.baseurl }}/contact">Contact</a></li>
+		<li{% if page.url contains "/lab-life" %} class="active"{% endif %}><a href="{{ site.url }}{{ site.baseurl }}/lab-life/">Lab Life</a></li>
 	  </ul>
 	</div>
   </div>

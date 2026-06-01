@@ -4,6 +4,8 @@ layout: gridlay
 excerpt: "Allan Lab: Team members"
 sitemap: false
 permalink: /team/
+breadcrumb:
+  - title: Team
 ---
 
 ## <span style="color: #8C1D40;"><strong>PI</strong></span>

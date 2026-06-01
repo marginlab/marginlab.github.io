@@ -4,4 +4,7 @@ layout: pubslay
 excerpt: "MARGIN Lab -- Publications."
 sitemap: false
 permalink: /publications/
+breadcrumb:
+  - title: Research
+  - title: Publications
 ---

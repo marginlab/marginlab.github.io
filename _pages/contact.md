@@ -2,6 +2,8 @@
 title: "Contact"
 layout: textlay
 permalink: /contact
+breadcrumb:
+  - title: Contact
 ---
 
 <h3 style="color: #8C1D40; font-weight: bold;">

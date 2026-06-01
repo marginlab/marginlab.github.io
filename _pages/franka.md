@@ -3,9 +3,13 @@ title: ""
 layout: page
 permalink: /robots/franka/
 class: robot-page
+breadcrumb:
+  - title: Robots
+    url: /robots/
+  - title: Franka Research Robot FR3
 ---
 
-<div class="row" markdown="0" style="margin-top: 30px; display: flex; align-items: center;">
+<div class="row" markdown="0" style="margin-top: 4px; display: flex; align-items: center;">
 <div class="col-sm-8" style="padding: 30px 40px 30px 30px;">
 <h1 style="font-weight: bold; font-size: 2.2em; line-height: 1.2; margin-bottom: 12px;">Franka Research<br>Robot FR3</h1>
 <div style="border-top: 3px solid #8C1D40; width: 60px; margin-bottom: 20px;"></div>
