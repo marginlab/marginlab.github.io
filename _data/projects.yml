@@ -23,7 +23,7 @@
     The first explainability-driven benchmark for Vision-Language Models in
     robotic surgery — Grad-CAM, causal graphs, and attention-alignment metrics
     reveal a gap between accuracy and reasoning in current surgical VLMs.
-  authors: "Jiajun Cheng, Xianwu Zhao, Sainan Liu, Xiaofan Yu, Ravi Prakash, Patrick Codd, Jonathan Katz, Shan Lin"
+  authors: "Jiajun Cheng, Sainan Liu, Xiaofan Yu, Ravi Prakash, Patrick Codd, Jonathan Katz, Shan Lin"
   paper: "https://arxiv.org/abs/2505.10764"
   code:  "https://github.com/jiajun344/SurgXBench-Explainable-Vision-Language-Model-Benchmark-for-Surgery"
   page:  "/AI-for-healthcare/surgxbench/"

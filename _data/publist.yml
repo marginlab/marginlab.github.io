@@ -45,7 +45,7 @@
 
 - title: "SurgXBench: Explainable Vision-Language Model Benchmark for Surgery"
   image: causal2.png
-  authors: Jiajun Cheng, Xianwu Zhao, Sainan Liu, Xiaofan Yu, Ravi Prakash, Patrick J. Codd, Jonathan Elliott Katz, Shan Lin
+  authors: Jiajun Cheng, Sainan Liu, Xiaofan Yu, Ravi Prakash, Patrick J. Codd, Jonathan Elliott Katz, Shan Lin
   year: 2026
   key_tags: ["Surgical VLM Benchmark"]
   code: https://github.com/jiajun344/SurgXBench-Explainable-Vision-Language-Model-Benchmark-for-Surgery
