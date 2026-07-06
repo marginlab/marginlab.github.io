@@ -13,6 +13,7 @@
   authors: Jiajun Cheng, Xiaofan Yu, Subarna Tripathi, Sainan Liu, Shan Lin
   year: 2026
   key_tags: ["JEPA", "Understand Dynamics"]
+  project: https://marginlab.github.io/AI-for-healthcare/trajpred/
   link:
     url: https://arxiv.org/pdf/2603.06999
     display: IROS 2026
