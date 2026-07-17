@@ -13,6 +13,7 @@
   authors: Jiajun Cheng, Xiaofan Yu, Subarna Tripathi, Sainan Liu, Shan Lin
   year: 2026
   key_tags: ["JEPA", "Understand Dynamics"]
+  code: https://github.com/jiajun344/TrajPred-Trajectory-Conditioned-Joint-Embedding-Prediction-for-Surgical-Instrument-Tissue-Interacti
   project: https://marginlab.github.io/AI-for-healthcare/trajpred/
   link:
     url: https://arxiv.org/pdf/2603.06999
