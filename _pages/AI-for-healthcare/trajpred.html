@@ -95,6 +95,10 @@ We also investigate whether visual embeddings of instrument–tissue interaction
 We identified a bug in our metrics implementation that <strong>only affects the CLIP-VIT-L-Patch14-FT (vision encoder frozen) row</strong> of Table 2 in the paper. The fix does not change the paper's main claims.
 </p>
 
+<p style="color: #c0392b; font-weight: 600; background: #fdecea; border-left: 4px solid #c0392b; padding: 12px 16px; border-radius: 4px;">
+<strong>Note:</strong> mAP is evaluated with the <em>ivtmetrics</em> zero-positive-video exclusion enabled — the <code>include-zero-positive-videos</code> option is set to <code>false</code>, so videos with no ground-truth positives are excluded from the per-class average, matching the library's recommended protocol.
+</p>
+
 <div style="overflow-x:auto; margin:14px 0 22px;">
 <table style="width:100%; border-collapse: collapse; font-size: 0.82em; border: 1px solid #e6e8ee;">
   <caption style="caption-side: bottom; font-size: 0.85em; color: #666; padding-top: 8px; text-align: left;">
