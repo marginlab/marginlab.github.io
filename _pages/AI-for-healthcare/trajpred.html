@@ -96,7 +96,7 @@ We identified a bug in our metrics implementation that <strong>only affects the 
 </p>
 
 <p style="color: #c0392b; font-weight: 600; background: #fdecea; border-left: 4px solid #c0392b; padding: 12px 16px; border-radius: 4px;">
-<strong>Note:</strong> mAP is evaluated with the <em>ivtmetrics</em> zero-positive-video exclusion enabled — the <code>include-zero-positive-videos</code> option is set to <code>false</code>, so videos with no ground-truth positives are excluded from the per-class average, matching the library's recommended protocol.
+<strong>Note:</strong> mAP is evaluated with the <em>ivtmetrics</em> zero-positive-video exclusion disabled — videos with no ground-truth positives are included in the per-class average.
 </p>
 
 <div style="overflow-x:auto; margin:14px 0 22px;">
