@@ -1,10 +1,20 @@
 
 - name: Juha Choi
   photo: juha_choi.png
-  info: FURI Student (Fall 2026)
+  info: School of Electrical, Computer and Energy Engineering<br>FURI Student (Fall 2026)
   email: jchoi230@asu.edu
   number_educ: 1
   education1: B.S. Electrical Engineering (Pre-Medical Track)
-  education2: 
-  website: 
+  education2:
+  website:
+  google_scholar:
+
+- name: Joshua Leung
+  photo: joshua_leung.png
+  info: School of Electrical, Computer and Energy Engineering
+  email: jeleung1@asu.edu
+  number_educ: 1
+  education1: B.S. Electrical Engineering
+  education2:
+  website: https://www.linkedin.com/in/joshua-leung-342b67345/
   google_scholar:
