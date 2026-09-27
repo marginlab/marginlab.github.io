@@ -1,26 +1,477 @@
 ---
-title: "LAVIFIT | MARGIN Lab"
+title: "LAViFiT | MARGIN Lab"
 layout: textlay
-excerpt: "LAVIFIT — Latent-Action-Guided Vision Fine-Tuning for Surgical Interaction Recognition"
+excerpt: "LAViFiT — Latent-Action-Guided Vision–Language Contrastive Learning for Surgical Interaction Recognition"
 sitemap: false
 permalink: /AI-for-healthcare/lavifit/
 breadcrumb:
   - title: Research
   - title: AI for Healthcare
     url: /AI-for-healthcare/
-  - title: LAVIFIT
+  - title: LAViFiT
 ---
 
-<h2><span style="color: #8C1D40;"><strong>LAVIFIT</strong></span></h2>
-<p style="font-size: 1.05em; color: #555; margin-top: -4px;">Latent-Action-Guided Vision Fine-Tuning for Surgical Interaction Recognition</p>
+<h2><span style="color: #8C1D40;"><strong>LAViFiT</strong></span></h2>
+<p style="font-size: 1.05em; color: #555; margin-top: -4px;">Latent-Action-Guided Vision&ndash;Language Contrastive Learning for Surgical Interaction Recognition</p>
+
+<p class="pub-authors" style="color:#555;font-size:0.95em;margin-bottom:2px;">
+Jiajun Cheng<sup>1</sup>, Subarna Tripathi<sup>3</sup>, Sainan Liu<sup>3</sup>, Xiaofan Yu<sup>2</sup>, Shan Lin<sup>1</sup>
+</p>
+<p style="color:#777;font-size:0.86em;margin-top:0;">
+<sup>1</sup>Arizona State University &nbsp;&middot;&nbsp; <sup>2</sup>University of California, Merced &nbsp;&middot;&nbsp; <sup>3</sup>Intel Corporation
+</p>
+
+<div style="display: flex; gap: 10px; flex-wrap: wrap; margin: 14px 0 4px; align-items:center;">
+  <span style="display:inline-block;padding:8px 14px;border:1px dashed #c9ccd6;color:#888;border-radius:6px;font-weight:600;font-size:0.9em;">📄 Preprint &mdash; coming soon</span>
+  <span style="display:inline-block;padding:8px 14px;border:1px dashed #c9ccd6;color:#888;border-radius:6px;font-weight:600;font-size:0.9em;">💻 Code &mdash; coming soon</span>
+</div>
+
+<figure style="margin: 22px 0 28px;">
+  <img src="{{ site.baseurl }}/images/projects/lavifit/lavifit_teaser.png" alt="PCA-RGB maps comparing ViT-L, V-JEPA2, V-JEPA2.1 and LAViFiT" style="width:100%;max-width:880px;display:block;margin:0 auto;border:1px solid #e6e8ee;border-radius:6px;box-shadow:none;" />
+  <figcaption style="text-align:left;font-size:0.88em;color:#666;margin-top:8px;max-width:880px;margin-left:auto;margin-right:auto;">PCA-RGB maps encode the top three principal components of patch features as RGB channels. LAViFiT adapts a standard ViT-L image backbone to produce spatially coherent maps visually comparable to those of V-JEPA2/2.1, while showing clearer emphasis on interacting instruments and target tissues and less background detail in the displayed example.</figcaption>
+</figure>
 
 <hr />
 
-<div style="padding: 40px 24px; text-align: center; background: #f7f8fb; border: 1px dashed #e6e8ee; border-radius: 10px; margin: 24px 0;">
-  <h3 style="margin: 0 0 8px; color: #8C1D40;">Full project page coming soon</h3>
-  <p style="margin: 0; color: #666; font-size: 0.95em;">
-    Paper, code, figures, and detailed results will be released here shortly.
-  </p>
+<h3><span style="color: #8C1D40;"><strong>Abstract</strong></span></h3>
+<p>
+Recognizing instrument&ndash;tissue interactions is essential for context-aware surgical AI. Vision-language models offer a natural way to inject semantic structure into surgical representations by aligning video features with textual action descriptions. However, pretrained encoders may lack spatial coherence, while global semantic alignment does not ensure precise spatial and temporal representations. By analyzing frame-to-frame feature changes, we find that semantic alignment increases their dimensionality, but larger increases do not necessarily improve recognition; encoders also differ in how strongly dominant changes localize to interaction regions. Motivated by these findings, we introduce <strong>LAViFiT</strong>, which compresses frame-to-frame changes into latent actions and predicts next-frame features during end-to-end video&ndash;language alignment. Without additional spatial or motion annotations, LAViFiT improves the interaction grounding of leading feature changes and temporal-direction sensitivity in our evaluated settings. We further characterize how action capacity and prediction strength affect recognition across encoders and triplet components. Using image encoders without large-scale video pretraining, LAViFiT achieves competitive recognition with faster inference and smaller INT4 accuracy drops than V-JEPA2/2.1, supporting its deployment potential.
+</p>
+
+<hr />
+
+<h3><span style="color: #8C1D40;"><strong>Contributions</strong></span></h3>
+<ol style="line-height:1.7;">
+  <li><strong>Empirical finding.</strong> Semantic alignment reshapes visual transition structure: strong recognition can coincide with compact spectra and interaction-grounded leading directions, whereas greater dimensional expansion alone does not imply better recognition.</li>
+  <li><strong>Finding-driven method.</strong> LAViFiT explicitly shapes this structure through a Causal Transition IDM, a compact predictive action bottleneck, video&ndash;language alignment, and patch-level SIG regularization (SIGReg).</li>
+  <li><strong>Empirical validation.</strong> Across encoders and datasets, LAViFiT improves interaction grounding, temporal-direction sensitivity, and recognition without additional spatial or motion supervision, with faster inference and smaller degradation under INT4 quantization than the evaluated pretrained video encoders.</li>
+</ol>
+
+<hr />
+
+<h3><span style="color: #8C1D40;"><strong>Method</strong></span></h3>
+
+<figure style="margin: 18px 0 28px;">
+  <img src="{{ site.baseurl }}/images/projects/lavifit/lavifit_pipeline.png" alt="LAViFiT pipeline: vision encoder, IDM+FWM training, vision-language alignment" loading="lazy" style="width:100%;max-width:960px;display:block;margin:0 auto;border:1px solid #e6e8ee;border-radius:6px;box-shadow:none;" />
+  <figcaption style="text-align:left;font-size:0.88em;color:#666;margin-top:8px;max-width:960px;margin-left:auto;margin-right:auto;">Each frame of a surgical clip is encoded independently and mean-pooled into a per-frame state, with patch-level SIGReg stabilizing local features. A Causal Transition <strong>IDM</strong> compresses the difference between consecutive states into a compact action token, which conditions a <strong>forward model</strong> that predicts the next state. States and actions are then aggregated by a transformer and aligned against triplet text descriptions.</figcaption>
+</figure>
+
+<hr />
+
+<h3><span style="color: #8C1D40;"><strong>Results</strong></span></h3>
+
+<table style="width:100%; border-collapse: collapse; font-size: 0.8em; border: 1px solid #e6e8ee;">
+  <caption style="caption-side: top; text-align: left; font-size: 1em; color: #666; padding-bottom: 8px;">
+    Main comparison on CholecT50 (Rendezvous split) and ProstaTD (5-fold) with latent-action dimension <em>d<sub>a</sub></em> = 128. <sup>†</sup> frame-wise image encoders, <sup>‡</sup> native video encoders, <sup>△</sup> classification head without video&ndash;language alignment, <sup>◇</sup> evaluated with different metrics and therefore requiring cautious comparison. <strong>Bold</strong> and <u>underline</u> mark best and second-best.
+  </caption>
+  <thead style="background: #8C1D40; color: #fff;">
+    <tr>
+      <th style="padding:8px 6px; text-align:left;">Method</th>
+      <th style="padding:8px 6px; text-align:right;">mAP<sub>IVT</sub></th>
+      <th style="padding:8px 6px; text-align:right;">mAP<sub>I</sub></th>
+      <th style="padding:8px 6px; text-align:right;">mAP<sub>V</sub></th>
+      <th style="padding:8px 6px; text-align:right;">mAP<sub>T</sub></th>
+      <th style="padding:8px 6px; text-align:right;">mAP<sub>IVT</sub></th>
+      <th style="padding:8px 6px; text-align:right;">mAP<sub>I</sub></th>
+      <th style="padding:8px 6px; text-align:right;">mAP<sub>V</sub></th>
+      <th style="padding:8px 6px; text-align:right;">mAP<sub>T</sub></th>
+    </tr>
+    <tr style="background:#a83a5b; color:#fff;">
+      <th style="padding:5px 6px; text-align:left; font-weight:500;"></th>
+      <th colspan="4" style="padding:5px 6px; text-align:center; font-weight:600;">CholecT50 (RDV)</th>
+      <th colspan="4" style="padding:5px 6px; text-align:center; font-weight:600;">ProstaTD (5-fold)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#f7f8fb;"><td colspan="9" style="padding:6px; font-style:italic; font-weight:600;">Published task-specific methods</td></tr>
+    <tr style="border-top: 1px solid #f0f2f5;">
+      <td style="padding:6px;">Rendezvous<sup>†△</sup></td>
+      <td style="padding:6px; text-align:right;">29.90</td><td style="padding:6px; text-align:right;">92.20</td><td style="padding:6px; text-align:right;">60.07</td><td style="padding:6px; text-align:right;">38.30</td>
+      <td style="padding:6px; text-align:right;">&ndash;</td><td style="padding:6px; text-align:right;">&ndash;</td><td style="padding:6px; text-align:right;">&ndash;</td><td style="padding:6px; text-align:right;">&ndash;</td>
+    </tr>
+    <tr style="border-top: 1px solid #f0f2f5;">
+      <td style="padding:6px;">Chain-of-Look<sup>†△</sup></td>
+      <td style="padding:6px; text-align:right;"><strong>38.00</strong></td><td style="padding:6px; text-align:right;">94.10</td><td style="padding:6px; text-align:right;">62.50</td><td style="padding:6px; text-align:right;">41.90</td>
+      <td style="padding:6px; text-align:right;">&ndash;</td><td style="padding:6px; text-align:right;">&ndash;</td><td style="padding:6px; text-align:right;">&ndash;</td><td style="padding:6px; text-align:right;">&ndash;</td>
+    </tr>
+    <tr style="border-top: 1px solid #f0f2f5;">
+      <td style="padding:6px;">MML-SurgAdapt<sup>†</sup></td>
+      <td style="padding:6px; text-align:right;">30.30</td><td style="padding:6px; text-align:right;">87.30</td><td style="padding:6px; text-align:right;">61.10</td><td style="padding:6px; text-align:right;">43.20</td>
+      <td style="padding:6px; text-align:right;">&ndash;</td><td style="padding:6px; text-align:right;">&ndash;</td><td style="padding:6px; text-align:right;">&ndash;</td><td style="padding:6px; text-align:right;">&ndash;</td>
+    </tr>
+    <tr style="border-top: 1px solid #f0f2f5;">
+      <td style="padding:6px;">TDNet<sup>†◇△</sup></td>
+      <td style="padding:6px; text-align:right;">&ndash;</td><td style="padding:6px; text-align:right;">&ndash;</td><td style="padding:6px; text-align:right;">&ndash;</td><td style="padding:6px; text-align:right;">&ndash;</td>
+      <td style="padding:6px; text-align:right;">36.10</td><td style="padding:6px; text-align:right;">89.90</td><td style="padding:6px; text-align:right;">61.70</td><td style="padding:6px; text-align:right;">55.70</td>
+    </tr>
+
+    <tr style="background:#f7f8fb;"><td colspan="9" style="padding:6px; font-style:italic; font-weight:600;">Controlled baselines &mdash; general-domain pretraining</td></tr>
+    <tr style="border-top: 1px solid #f0f2f5;">
+      <td style="padding:6px;">CLIP ViT-L/14<sup>†</sup></td>
+      <td style="padding:6px; text-align:right;">26.17</td><td style="padding:6px; text-align:right;">86.26</td><td style="padding:6px; text-align:right;">62.54</td><td style="padding:6px; text-align:right;">42.93</td>
+      <td style="padding:6px; text-align:right;">26.80</td><td style="padding:6px; text-align:right;">90.97</td><td style="padding:6px; text-align:right;">65.00</td><td style="padding:6px; text-align:right;">53.51</td>
+    </tr>
+    <tr style="border-top: 1px solid #f0f2f5;">
+      <td style="padding:6px;">DINOv2-L<sup>†</sup></td>
+      <td style="padding:6px; text-align:right;">27.41</td><td style="padding:6px; text-align:right;">90.08</td><td style="padding:6px; text-align:right;">65.28</td><td style="padding:6px; text-align:right;">45.44</td>
+      <td style="padding:6px; text-align:right;">36.01</td><td style="padding:6px; text-align:right;">93.13</td><td style="padding:6px; text-align:right;">70.75</td><td style="padding:6px; text-align:right;">63.84</td>
+    </tr>
+    <tr style="border-top: 1px solid #f0f2f5;">
+      <td style="padding:6px;">V-JEPA2<sup>‡</sup></td>
+      <td style="padding:6px; text-align:right;">29.68</td><td style="padding:6px; text-align:right;">92.16</td><td style="padding:6px; text-align:right;">68.55</td><td style="padding:6px; text-align:right;">47.97</td>
+      <td style="padding:6px; text-align:right;">32.66</td><td style="padding:6px; text-align:right;">91.30</td><td style="padding:6px; text-align:right;">71.89</td><td style="padding:6px; text-align:right;">59.95</td>
+    </tr>
+    <tr style="border-top: 1px solid #f0f2f5;">
+      <td style="padding:6px;">V-JEPA2.1<sup>‡</sup></td>
+      <td style="padding:6px; text-align:right;"><u>34.82</u></td><td style="padding:6px; text-align:right;">93.99</td><td style="padding:6px; text-align:right;"><u>69.76</u></td><td style="padding:6px; text-align:right;"><u>50.23</u></td>
+      <td style="padding:6px; text-align:right;">35.87</td><td style="padding:6px; text-align:right;">94.36</td><td style="padding:6px; text-align:right;"><strong>74.35</strong></td><td style="padding:6px; text-align:right;">62.64</td>
+    </tr>
+    <tr style="border-top: 1px solid #f0f2f5;">
+      <td style="padding:6px;">TimeSformer<sup>‡</sup></td>
+      <td style="padding:6px; text-align:right;">27.32</td><td style="padding:6px; text-align:right;">88.67</td><td style="padding:6px; text-align:right;">64.69</td><td style="padding:6px; text-align:right;">44.43</td>
+      <td style="padding:6px; text-align:right;">29.43</td><td style="padding:6px; text-align:right;">86.19</td><td style="padding:6px; text-align:right;">64.69</td><td style="padding:6px; text-align:right;">56.14</td>
+    </tr>
+
+    <tr style="background:#f7f8fb;"><td colspan="9" style="padding:6px; font-style:italic; font-weight:600;">Controlled baselines &mdash; surgical-domain pretraining</td></tr>
+    <tr style="border-top: 1px solid #f0f2f5;">
+      <td style="padding:6px;">EndoViT<sup>†</sup></td>
+      <td style="padding:6px; text-align:right;">24.71</td><td style="padding:6px; text-align:right;">85.19</td><td style="padding:6px; text-align:right;">61.41</td><td style="padding:6px; text-align:right;">41.23</td>
+      <td style="padding:6px; text-align:right;">26.94</td><td style="padding:6px; text-align:right;">88.35</td><td style="padding:6px; text-align:right;">62.02</td><td style="padding:6px; text-align:right;">53.63</td>
+    </tr>
+    <tr style="border-top: 1px solid #f0f2f5;">
+      <td style="padding:6px;">LEMON<sup>†</sup></td>
+      <td style="padding:6px; text-align:right;">28.71</td><td style="padding:6px; text-align:right;">87.34</td><td style="padding:6px; text-align:right;">65.04</td><td style="padding:6px; text-align:right;">44.70</td>
+      <td style="padding:6px; text-align:right;">32.26</td><td style="padding:6px; text-align:right;">91.72</td><td style="padding:6px; text-align:right;">66.51</td><td style="padding:6px; text-align:right;">59.71</td>
+    </tr>
+    <tr style="border-top: 1px solid #f0f2f5;">
+      <td style="padding:6px;">SurgVLP<sup>†</sup></td>
+      <td style="padding:6px; text-align:right;">20.28</td><td style="padding:6px; text-align:right;">73.96</td><td style="padding:6px; text-align:right;">52.33</td><td style="padding:6px; text-align:right;">37.76</td>
+      <td style="padding:6px; text-align:right;">20.64</td><td style="padding:6px; text-align:right;">78.07</td><td style="padding:6px; text-align:right;">52.45</td><td style="padding:6px; text-align:right;">45.88</td>
+    </tr>
+    <tr style="border-top: 1px solid #f0f2f5;">
+      <td style="padding:6px;">HecVLP<sup>†</sup></td>
+      <td style="padding:6px; text-align:right;">21.41</td><td style="padding:6px; text-align:right;">77.59</td><td style="padding:6px; text-align:right;">57.23</td><td style="padding:6px; text-align:right;">39.29</td>
+      <td style="padding:6px; text-align:right;">22.42</td><td style="padding:6px; text-align:right;">81.16</td><td style="padding:6px; text-align:right;">55.89</td><td style="padding:6px; text-align:right;">48.76</td>
+    </tr>
+    <tr style="border-top: 1px solid #f0f2f5;">
+      <td style="padding:6px;">PeskaVLP<sup>†</sup></td>
+      <td style="padding:6px; text-align:right;">22.02</td><td style="padding:6px; text-align:right;">79.20</td><td style="padding:6px; text-align:right;">57.22</td><td style="padding:6px; text-align:right;">39.26</td>
+      <td style="padding:6px; text-align:right;">23.09</td><td style="padding:6px; text-align:right;">82.45</td><td style="padding:6px; text-align:right;">56.99</td><td style="padding:6px; text-align:right;">50.75</td>
+    </tr>
+
+    <tr style="border-top: 2px solid #8C1D40; background: #fff8e1;">
+      <td style="padding:6px;"><strong>LAViFiT &mdash; ViT-L</strong></td>
+      <td style="padding:6px; text-align:right;">32.15</td><td style="padding:6px; text-align:right;">93.24</td><td style="padding:6px; text-align:right;">68.29</td><td style="padding:6px; text-align:right;">47.05</td>
+      <td style="padding:6px; text-align:right;">32.82</td><td style="padding:6px; text-align:right;">92.82</td><td style="padding:6px; text-align:right;">68.28</td><td style="padding:6px; text-align:right;">60.63</td>
+    </tr>
+    <tr style="border-top: 1px solid #f0f2f5; background: #fff8e1;">
+      <td style="padding:6px;"><strong>LAViFiT &mdash; DINOv2-L</strong></td>
+      <td style="padding:6px; text-align:right;">33.13</td><td style="padding:6px; text-align:right;"><u>94.60</u></td><td style="padding:6px; text-align:right;">68.91</td><td style="padding:6px; text-align:right;">48.81</td>
+      <td style="padding:6px; text-align:right;"><u>38.14</u></td><td style="padding:6px; text-align:right;"><u>96.03</u></td><td style="padding:6px; text-align:right;"><u>73.01</u></td><td style="padding:6px; text-align:right;"><u>65.21</u></td>
+    </tr>
+    <tr style="border-top: 1px solid #f0f2f5; background: #fff8e1;">
+      <td style="padding:6px;"><strong>LAViFiT &mdash; SurgeNet-L</strong></td>
+      <td style="padding:6px; text-align:right;">32.78</td><td style="padding:6px; text-align:right;"><strong>95.02</strong></td><td style="padding:6px; text-align:right;"><strong>71.64</strong></td><td style="padding:6px; text-align:right;"><strong>50.89</strong></td>
+      <td style="padding:6px; text-align:right;"><strong>38.85</strong></td><td style="padding:6px; text-align:right;"><strong>96.74</strong></td><td style="padding:6px; text-align:right;">72.82</td><td style="padding:6px; text-align:right;"><strong>65.73</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<p style="font-size:0.88em;color:#666;margin-top:10px;">
+LAViFiT gives the best instrument, verb, and target mAP on CholecT50 and the best triplet, instrument, and target mAP on ProstaTD, using image encoders without large-scale video pretraining. On CholecT50 triplet mAP it remains below Chain-of-Look, which uses a task-specific classification head rather than video&ndash;language alignment. ProstaTD entries are means over the five folds.
+</p>
+
+<hr />
+
+<h3><span style="color: #8C1D40;"><strong>Spatial feature organization</strong></span></h3>
+
+<figure style="margin: 18px 0 28px;">
+  <img src="{{ site.baseurl }}/images/projects/lavifit/lavifit_pca_rgb.png" alt="PCA-RGB maps comparing LAViFiT, no-IDM+FDM baselines and V-JEPA2/2.1 over time" loading="lazy" style="width:100%;max-width:880px;display:block;margin:0 auto;border:1px solid #e6e8ee;border-radius:6px;box-shadow:none;" />
+  <figcaption style="text-align:left;font-size:0.88em;color:#666;margin-top:8px;max-width:880px;margin-left:auto;margin-right:auto;">PCA-RGB maps over a frame sequence, comparing the full LAViFiT model against the same encoders trained without IDM+FDM and against finetuned V-JEPA2/2.1. Latent-action prediction produces more spatially coherent patch structure across all three backbones.</figcaption>
+</figure>
+
+<style>
+.sweep { border:1px solid #e6e8ee; border-radius:8px; padding:16px 18px 10px; margin:18px auto 10px; max-width:880px; background:#fdfdfe; }
+.sweep-head { display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:8px; margin-bottom:12px; }
+.sweep-title { font-weight:600; color:#8C1D40; font-size:0.95em; }
+.sweep-read { font-variant-numeric:tabular-nums; font-size:0.95em; color:#333; }
+.sweep-read b { color:#8C1D40; }
+.sweep-read em { font-style:normal; background:#fff8e1; border:1px solid #f0e2b0; color:#8a6d1f; border-radius:4px; padding:1px 6px; margin-left:6px; font-size:0.82em; }
+.sweep-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.sweep-enc { font-size:0.82em; font-weight:600; color:#444; text-align:center; margin-bottom:6px; }
+.sweep-pair { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+.sweep-pair figure { margin:0; }
+.sweep-pair img { width:100%; display:block; border:1px solid #e6e8ee; border-radius:4px; background:#f2f3f6; aspect-ratio:1/1; }
+.sweep-pair figcaption { font-size:0.72em; color:#888; text-align:center; margin-top:3px; }
+.sweep-slider { width:100%; margin:16px 0 4px; accent-color:#8C1D40; }
+.sweep-ticks { display:flex; justify-content:space-between; font-size:0.78em; color:#888; padding-bottom:6px; }
+.sweep-ticks span { cursor:pointer; padding:2px 4px; border-radius:3px; }
+.sweep-ticks span:hover { color:#8C1D40; }
+.sweep-ticks span.on { color:#8C1D40; font-weight:700; background:#fdf0f4; }
+@media (max-width:640px){ .sweep-grid{ grid-template-columns:1fr; } }
+</style>
+
+<div class="sweep" data-sweep="lp" data-base="{{ site.baseurl }}"
+     data-values="0.0,0.1,0.5,1.0,2.0" data-default="3" data-label="&lambda;<sub>pred</sub>" data-note="3">
+  <div class="sweep-head">
+    <span class="sweep-title">Prediction weight sweep &mdash; drag the slider</span>
+    <span class="sweep-read"></span>
+  </div>
+  <div class="sweep-grid">
+    <div class="sweep-col" data-enc="vitl"><div class="sweep-enc">ViT-L/16</div><div class="sweep-pair">
+      <figure><img class="sweep-in" src="{{ site.baseurl }}/images/projects/lavifit/sweep/lp_vitl_input.png" alt="Input frame, ViT-L example" loading="lazy" /><figcaption>Input</figcaption></figure>
+      <figure><img class="sweep-map" alt="PCA-RGB map, ViT-L" /><figcaption>PCA-RGB</figcaption></figure>
+    </div></div>
+    <div class="sweep-col" data-enc="dinov2"><div class="sweep-enc">DINOv2-L/16</div><div class="sweep-pair">
+      <figure><img class="sweep-in" src="{{ site.baseurl }}/images/projects/lavifit/sweep/lp_dinov2_input.png" alt="Input frame, DINOv2-L example" loading="lazy" /><figcaption>Input</figcaption></figure>
+      <figure><img class="sweep-map" alt="PCA-RGB map, DINOv2-L" /><figcaption>PCA-RGB</figcaption></figure>
+    </div></div>
+    <div class="sweep-col" data-enc="surgenet"><div class="sweep-enc">SurgeNet-L/14</div><div class="sweep-pair">
+      <figure><img class="sweep-in" src="{{ site.baseurl }}/images/projects/lavifit/sweep/lp_surgenet_input.png" alt="Input frame, SurgeNet-L example" loading="lazy" /><figcaption>Input</figcaption></figure>
+      <figure><img class="sweep-map" alt="PCA-RGB map, SurgeNet-L" /><figcaption>PCA-RGB</figcaption></figure>
+    </div></div>
+  </div>
+  <input class="sweep-slider" type="range" min="0" max="4" step="1" value="3" aria-label="Prediction weight lambda_pred" />
+  <div class="sweep-ticks"></div>
+</div>
+
+<script>
+(function () {
+  var widgets = document.querySelectorAll('.sweep');
+  Array.prototype.forEach.call(widgets, function (w) {
+    var kind = w.getAttribute('data-sweep');
+    var base = w.getAttribute('data-base') || '';
+    var vals = w.getAttribute('data-values').split(',');
+    var label = w.getAttribute('data-label');
+    var defIdx = parseInt(w.getAttribute('data-note'), 10);
+    var slider = w.querySelector('.sweep-slider');
+    var read = w.querySelector('.sweep-read');
+    var ticks = w.querySelector('.sweep-ticks');
+    var cols = w.querySelectorAll('.sweep-col');
+
+    var src = function (enc, v) {
+      return base + '/images/projects/lavifit/sweep/' + kind + '_' + enc + '_' + v + '.png';
+    };
+
+    // preload every frame so dragging never flickers
+    vals.forEach(function (v) {
+      Array.prototype.forEach.call(cols, function (c) {
+        var p = new Image();
+        p.src = src(c.getAttribute('data-enc'), v);
+      });
+    });
+
+    vals.forEach(function (v, i) {
+      var s = document.createElement('span');
+      s.textContent = v;
+      s.addEventListener('click', function () { slider.value = i; render(); });
+      ticks.appendChild(s);
+    });
+
+    function render() {
+      var i = parseInt(slider.value, 10);
+      var v = vals[i];
+      Array.prototype.forEach.call(cols, function (c) {
+        c.querySelector('.sweep-map').src = src(c.getAttribute('data-enc'), v);
+      });
+      read.innerHTML = label + ' = <b>' + v + '</b>' + (i === defIdx ? ' <em>full model</em>' : '');
+      Array.prototype.forEach.call(ticks.children, function (t, j) {
+        t.className = (j === i) ? 'on' : '';
+      });
+    }
+
+    slider.addEventListener('input', render);
+    render();
+  });
+})();
+</script>
+
+<noscript>
+  <p style="font-size:0.88em;color:#666;">Interactive sweeps need JavaScript. The full grids are shown below.</p>
+</noscript>
+
+<p style="font-size:0.88em;color:#666;max-width:880px;margin:4px auto 0;">
+Patch-level PCA-RGB as the prediction weight <em>&lambda;</em><sub>pred</sub> is swept at fixed <em>d<sub>a</sub></em> = 128. Predictive pressure reorganizes local feature structure for every encoder, but its effect on boundary clarity and local detail is encoder dependent. Quantitatively, raising <em>&lambda;</em><sub>pred</sub> from 0 to 1 improves ViT-L verb and triplet mAP by 2.81 and 1.40 points and SurgeNet-L verb and target mAP by 1.75 and 1.51 points, while lowering SurgeNet-L triplet mAP by 0.79 &mdash; stronger predictive pressure does not uniformly benefit every triplet component.
+</p>
+
+<details style="max-width:880px;margin:16px auto 28px;">
+  <summary style="cursor:pointer;font-size:0.88em;color:#8C1D40;">Show the full published grid (all encoders)</summary>
+  <figure style="margin:14px 0 0;">
+    <img src="{{ site.baseurl }}/images/projects/lavifit/lavifit_lambda_pred.png" alt="Full PCA-RGB grid across prediction weights" loading="lazy" style="width:100%;display:block;border:1px solid #e6e8ee;border-radius:6px;" />
+    <figcaption style="font-size:0.85em;color:#666;margin-top:6px;">PCA-RGB across <em>&lambda;</em><sub>pred</sub>; the red ellipse marks the instrument&ndash;target interaction region.</figcaption>
+  </figure>
+</details>
+
+<figure style="margin: 18px 0 28px;">
+  <img src="{{ site.baseurl }}/images/projects/lavifit/lavifit_pca_ablation.png" alt="PCA-RGB ablation across three encoders: full model, without patch-level SIGReg, and without IDM+FDM" loading="lazy" style="width:100%;max-width:880px;display:block;margin:0 auto;border:1px solid #e6e8ee;border-radius:6px;box-shadow:none;" />
+  <figcaption style="text-align:left;font-size:0.88em;color:#666;margin-top:8px;max-width:880px;margin-left:auto;margin-right:auto;">PCA-RGB comparison of the full LAViFiT model (<em>d<sub>a</sub></em> = 128) against the no-patch-SIGReg and no-IDM+FDM variants, for ViT-L/16, DINOv2-L/16 and SurgeNet-L/14. Latent-action modeling visibly reorganizes patch-level representations, while patch-level SIGReg further affects the preservation and separation of local visual structure.</figcaption>
+</figure>
+
+<hr />
+
+<h3><span style="color: #8C1D40;"><strong>Deployment efficiency</strong></span></h3>
+
+<p>
+Because LAViFiT encodes each frame independently before a lightweight latent-action aggregation, its attention cost scales <em>linearly</em> in clip length, <em>O</em>(<em>T</em>&middot;<em>P</em><sup>2</sup> + <em>T</em><sup>2</sup>), whereas spatiotemporal encoders attend jointly over all <em>T</em>&middot;<em>P</em> tokens at <em>O</em>(<em>T</em><sup>2</sup>&middot;<em>P</em><sup>2</sup>), so the gap widens as clips get longer.
+</p>
+
+<table style="width:100%; border-collapse: collapse; font-size: 0.82em; border: 1px solid #e6e8ee; margin-top:14px;">
+  <caption style="caption-side: top; text-align: left; font-size: 1em; color: #666; padding-bottom: 8px;">
+    Inference efficiency on CholecT50 (single GPU, real clips). Throughput is the headline metric; latency is per clip, single stream. &uarr; / &darr; = higher / lower is better.
+  </caption>
+  <thead style="background: #8C1D40; color: #fff;">
+    <tr>
+      <th style="padding:8px 6px; text-align:left;">Model</th>
+      <th style="padding:8px 6px; text-align:left;">Attention</th>
+      <th style="padding:8px 6px; text-align:right;">Res.</th>
+      <th style="padding:8px 6px; text-align:right;">Params</th>
+      <th style="padding:8px 6px; text-align:right;">Latency (ms) &darr;</th>
+      <th style="padding:8px 6px; text-align:right;">Throughput (clips/s) &uarr;</th>
+      <th style="padding:8px 6px; text-align:right;">Memory (GB) &darr;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#f7f8fb;"><td colspan="7" style="padding:6px; font-style:italic; font-weight:600;">Ours (per-frame)</td></tr>
+    <tr style="border-top: 1px solid #f0f2f5; background: #fff8e1;">
+      <td style="padding:6px;"><strong>LAViFiT &mdash; ViT-L</strong></td>
+      <td style="padding:6px;">per-frame</td>
+      <td style="padding:6px; text-align:right;">224</td><td style="padding:6px; text-align:right;">304M</td>
+      <td style="padding:6px; text-align:right;"><strong>13.7</strong></td><td style="padding:6px; text-align:right;"><strong>72.8</strong></td><td style="padding:6px; text-align:right;"><strong>7.5</strong></td>
+    </tr>
+    <tr style="border-top: 1px solid #f0f2f5; background: #fff8e1;">
+      <td style="padding:6px;"><strong>LAViFiT &mdash; DINOv2-L</strong></td>
+      <td style="padding:6px;">per-frame</td>
+      <td style="padding:6px; text-align:right;">224</td><td style="padding:6px; text-align:right;">304M</td>
+      <td style="padding:6px; text-align:right;">19.7</td><td style="padding:6px; text-align:right;">50.8</td><td style="padding:6px; text-align:right;">10.9</td>
+    </tr>
+    <tr style="border-top: 1px solid #f0f2f5; background: #fff8e1;">
+      <td style="padding:6px;"><strong>LAViFiT &mdash; SurgeNet-L</strong></td>
+      <td style="padding:6px;">per-frame</td>
+      <td style="padding:6px; text-align:right;">224</td><td style="padding:6px; text-align:right;">304M</td>
+      <td style="padding:6px; text-align:right;">41.5</td><td style="padding:6px; text-align:right;">24.1</td><td style="padding:6px; text-align:right;">20.2</td>
+    </tr>
+    <tr style="background:#f7f8fb;"><td colspan="7" style="padding:6px; font-style:italic; font-weight:600;">Video baselines (spatiotemporal)</td></tr>
+    <tr style="border-top: 1px solid #f0f2f5;">
+      <td style="padding:6px;">V-JEPA2</td><td style="padding:6px;">spatiotemporal</td>
+      <td style="padding:6px; text-align:right;">256</td><td style="padding:6px; text-align:right;">326M</td>
+      <td style="padding:6px; text-align:right;">68.1</td><td style="padding:6px; text-align:right;">14.7</td><td style="padding:6px; text-align:right;">15.4</td>
+    </tr>
+    <tr style="border-top: 1px solid #f0f2f5;">
+      <td style="padding:6px;">V-JEPA2.1</td><td style="padding:6px;">spatiotemporal</td>
+      <td style="padding:6px; text-align:right;">384</td><td style="padding:6px; text-align:right;">305M</td>
+      <td style="padding:6px; text-align:right;">96.2</td><td style="padding:6px; text-align:right;">10.4</td><td style="padding:6px; text-align:right;">22.0</td>
+    </tr>
+    <tr style="border-top: 1px solid #f0f2f5;">
+      <td style="padding:6px;">TimeSformer</td><td style="padding:6px;">spatiotemporal</td>
+      <td style="padding:6px; text-align:right;">384</td><td style="padding:6px; text-align:right;">305M</td>
+      <td style="padding:6px; text-align:right;">94.3</td><td style="padding:6px; text-align:right;">10.6</td><td style="padding:6px; text-align:right;">22.0</td>
+    </tr>
+  </tbody>
+</table>
+
+<p style="font-size:0.88em;color:#666;margin-top:10px;">
+At matched backbone scale (~300M parameters), the ViT-L and DINOv2-L variants reach 50&ndash;73 clips/s, roughly 3.5&ndash;5&times; the throughput of the spatiotemporal baselines (&le; 14.7 clips/s). The SurgeNet-L variant is slower at 24.1 clips/s, still above every video baseline.
+</p>
+
+<table style="width:100%; max-width:640px; border-collapse: collapse; font-size: 0.82em; border: 1px solid #e6e8ee; margin-top:14px;">
+  <caption style="caption-side: top; text-align: left; font-size: 1em; color: #666; padding-bottom: 8px;">
+    Relative mAP change (%) under post-training, weight-only INT4 quantization on CholecT50, against FP32.
+  </caption>
+  <thead style="background: #8C1D40; color: #fff;">
+    <tr>
+      <th style="padding:8px 6px; text-align:left;">Encoder</th>
+      <th style="padding:8px 6px; text-align:left;">Variant</th>
+      <th style="padding:8px 6px; text-align:right;">&Delta;I</th>
+      <th style="padding:8px 6px; text-align:right;">&Delta;V</th>
+      <th style="padding:8px 6px; text-align:right;">&Delta;T</th>
+      <th style="padding:8px 6px; text-align:right;">&Delta;IVT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-top: 1px solid #e6e8ee; background: #fff8e1;">
+      <td rowspan="2" style="padding:6px; border-right:1px solid #e6e8ee;">ViT-L</td>
+      <td style="padding:6px;"><strong>Ours</strong></td>
+      <td style="padding:6px; text-align:right;">&minus;0.9</td><td style="padding:6px; text-align:right;">&minus;0.8</td><td style="padding:6px; text-align:right;">0.0</td><td style="padding:6px; text-align:right;">&minus;2.7</td>
+    </tr>
+    <tr style="border-top: 1px solid #f0f2f5;">
+      <td style="padding:6px;">No IDM+FDM</td>
+      <td style="padding:6px; text-align:right;">&minus;0.1</td><td style="padding:6px; text-align:right;">&minus;0.5</td><td style="padding:6px; text-align:right;">&minus;2.9</td><td style="padding:6px; text-align:right;">&minus;4.2</td>
+    </tr>
+    <tr style="border-top: 1px solid #e6e8ee; background: #fff8e1;">
+      <td rowspan="2" style="padding:6px; border-right:1px solid #e6e8ee;">DINOv2-L</td>
+      <td style="padding:6px;"><strong>Ours</strong></td>
+      <td style="padding:6px; text-align:right;">&minus;0.3</td><td style="padding:6px; text-align:right;">&minus;0.2</td><td style="padding:6px; text-align:right;">&minus;0.1</td><td style="padding:6px; text-align:right;">&minus;2.8</td>
+    </tr>
+    <tr style="border-top: 1px solid #f0f2f5;">
+      <td style="padding:6px;">No IDM+FDM</td>
+      <td style="padding:6px; text-align:right;">&minus;0.5</td><td style="padding:6px; text-align:right;">&minus;0.9</td><td style="padding:6px; text-align:right;">&minus;0.9</td><td style="padding:6px; text-align:right;">&minus;4.2</td>
+    </tr>
+    <tr style="border-top: 1px solid #e6e8ee; background: #fff8e1;">
+      <td rowspan="2" style="padding:6px; border-right:1px solid #e6e8ee;">SurgeNet-L</td>
+      <td style="padding:6px;"><strong>Ours</strong></td>
+      <td style="padding:6px; text-align:right;">&minus;0.1</td><td style="padding:6px; text-align:right;">&minus;0.6</td><td style="padding:6px; text-align:right;">+0.2</td><td style="padding:6px; text-align:right;">+0.4</td>
+    </tr>
+    <tr style="border-top: 1px solid #f0f2f5;">
+      <td style="padding:6px;">No IDM+FDM</td>
+      <td style="padding:6px; text-align:right;">&minus;0.2</td><td style="padding:6px; text-align:right;">&minus;1.0</td><td style="padding:6px; text-align:right;">&minus;0.5</td><td style="padding:6px; text-align:right;">&minus;1.3</td>
+    </tr>
+    <tr style="border-top: 2px solid #8C1D40;">
+      <td style="padding:6px; border-right:1px solid #e6e8ee;">V-JEPA2</td>
+      <td style="padding:6px;">Base</td>
+      <td style="padding:6px; text-align:right;">+0.2</td><td style="padding:6px; text-align:right;">&minus;2.4</td><td style="padding:6px; text-align:right;">&minus;3.9</td><td style="padding:6px; text-align:right;">&minus;7.7</td>
+    </tr>
+    <tr style="border-top: 1px solid #f0f2f5;">
+      <td style="padding:6px; border-right:1px solid #e6e8ee;">V-JEPA2.1</td>
+      <td style="padding:6px;">Base</td>
+      <td style="padding:6px; text-align:right;">&minus;2.4</td><td style="padding:6px; text-align:right;">&minus;4.8</td><td style="padding:6px; text-align:right;">&minus;4.7</td><td style="padding:6px; text-align:right;">&minus;5.6</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3><span style="color: #8C1D40;"><strong>Citation</strong></span></h3>
+<pre style="background:#f7f8fb;border:1px solid #e6e8ee;border-radius:6px;padding:14px 16px;font-size:0.85em;line-height:1.55;overflow-x:auto;color:#1d2230;"><code>@article{cheng2026lavifit,
+  title={Latent-Action-Guided Vision-Language Contrastive Learning for Surgical Interaction Recognition},
+  author={Cheng, Jiajun and Tripathi, Subarna and Liu, Sainan and Yu, Xiaofan and Lin, Shan},
+  year={2026}
+}</code></pre>
+
+<hr />
+
+<h3><span style="color: #8C1D40;"><strong>Authors</strong></span></h3>
+<div class="person-grid">
+
+  <div class="person-card">
+    <img src="{{ site.baseurl }}/images/teampic/jiajun.png" alt="Jiajun Cheng" style="width:110px;height:110px;border-radius:50%;object-fit:cover;margin:0 auto;display:block;box-shadow:none;" />
+    <div class="person-card-name">Jiajun Cheng</div>
+    <div class="person-card-affil">ASU</div>
+  </div>
+
+  <div class="person-card">
+    <img src="{{ site.baseurl }}/images/teampic/subarna-tripathi.png" alt="Subarna Tripathi" style="width:110px;height:110px;border-radius:50%;object-fit:cover;margin:0 auto;display:block;box-shadow:none;" />
+    <div class="person-card-name"><a href="https://subarnatripathi.github.io/" target="_blank" style="color: #333; text-decoration: underline; text-underline-offset: 2px;">Subarna Tripathi</a></div>
+    <div class="person-card-affil">Intel</div>
+  </div>
+
+  <div class="person-card">
+    <img src="{{ site.baseurl }}/images/teampic/sainan-liu.jpg" alt="Sainan Liu" style="width:110px;height:110px;border-radius:50%;object-fit:cover;margin:0 auto;display:block;box-shadow:none;" />
+    <div class="person-card-name"><a href="https://www.sainanliu.com/" target="_blank" style="color: #333; text-decoration: underline; text-underline-offset: 2px;">Sainan Liu</a></div>
+    <div class="person-card-affil">Intel</div>
+  </div>
+
+  <div class="person-card">
+    <img src="{{ site.baseurl }}/images/teampic/xiaofan-yu.jpg" alt="Xiaofan Yu" style="width:110px;height:110px;border-radius:50%;object-fit:cover;margin:0 auto;display:block;box-shadow:none;" />
+    <div class="person-card-name"><a href="https://yuccalab.ucmerced.edu/" target="_blank" style="color: #333; text-decoration: underline; text-underline-offset: 2px;">Xiaofan Yu</a></div>
+    <div class="person-card-affil">University of California, Merced</div>
+  </div>
+
+  <div class="person-card">
+    <img src="{{ site.baseurl }}/images/teampic/shanlin.jpg" alt="Shan Lin" style="width:110px;height:110px;border-radius:50%;object-fit:cover;margin:0 auto;display:block;box-shadow:none;" />
+    <div class="person-card-name"><a href="https://shanl03.github.io/" target="_blank" style="color: #333; text-decoration: underline; text-underline-offset: 2px;">Shan Lin</a></div>
+    <div class="person-card-affil">ASU</div>
+  </div>
+
 </div>
 
 <div style="margin-bottom: 40px;"></div>
