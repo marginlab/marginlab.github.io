@@ -1,50 +1,53 @@
 ---
-title: "LAViFiT | MARGIN Lab"
+title: "LAViF | MARGIN Lab"
 layout: textlay
-excerpt: "LAViFiT — Latent-Action-Guided Vision–Language Contrastive Learning for Surgical Interaction Recognition"
+excerpt: "LAViF — Latent-Action-Guided Vision–Language Contrastive Learning for Surgical Interaction Recognition"
 sitemap: false
 permalink: /AI-for-healthcare/lavifit/
 breadcrumb:
   - title: Research
   - title: AI for Healthcare
     url: /AI-for-healthcare/
-  - title: LAViFiT
+  - title: LAViF
 ---
 
-<h2><span style="color: #8C1D40;"><strong>LAViFiT</strong></span></h2>
+<h2><span style="color: #8C1D40;"><strong>LAViF</strong></span></h2>
 <p style="font-size: 1.05em; color: #555; margin-top: -4px;">Latent-Action-Guided Vision&ndash;Language Contrastive Learning for Surgical Interaction Recognition</p>
 
 <p class="pub-authors" style="color:#555;font-size:0.95em;margin-bottom:2px;">
-Jiajun Cheng<sup>1</sup>, Subarna Tripathi<sup>3</sup>, Sainan Liu<sup>3</sup>, Xiaofan Yu<sup>2</sup>, Shan Lin<sup>1</sup>
+Jiajun Cheng<sup>1</sup>, Sainan Liu<sup>3</sup>, Subarna Tripathi<sup>3</sup>, Xiaofan Yu<sup>2</sup>, Shan Lin<sup>1</sup>
 </p>
 <p style="color:#777;font-size:0.86em;margin-top:0;">
 <sup>1</sup>Arizona State University &nbsp;&middot;&nbsp; <sup>2</sup>University of California, Merced &nbsp;&middot;&nbsp; <sup>3</sup>Intel Corporation
 </p>
 
 <div style="display: flex; gap: 10px; flex-wrap: wrap; margin: 14px 0 4px; align-items:center;">
-  <span style="display:inline-block;padding:8px 14px;border:1px dashed #c9ccd6;color:#888;border-radius:6px;font-weight:600;font-size:0.9em;">📄 Preprint &mdash; coming soon</span>
+  <a href="https://arxiv.org/abs/2607.19889" target="_blank" style="display:inline-block;padding:8px 14px;border:1px solid #8C1D40;color:#8C1D40;border-radius:6px;text-decoration:none;font-weight:600;font-size:0.9em;">📄 Paper (arXiv)</a>
   <span style="display:inline-block;padding:8px 14px;border:1px dashed #c9ccd6;color:#888;border-radius:6px;font-weight:600;font-size:0.9em;">💻 Code &mdash; coming soon</span>
 </div>
+<p style="font-size:0.84em;color:#888;margin:8px 0 0;">
+The current arXiv posting is an earlier version of this work, titled <em>LAVIFT: Latent-Action-Guided Vision Fine-Tuning for Surgical Interaction Recognition</em>. An updated version is in preparation.
+</p>
 
 <figure style="margin: 22px 0 28px;">
-  <img src="{{ site.baseurl }}/images/projects/lavifit/lavifit_teaser.png" alt="PCA-RGB maps comparing ViT-L, V-JEPA2, V-JEPA2.1 and LAViFiT" style="width:100%;max-width:880px;display:block;margin:0 auto;border:1px solid #e6e8ee;border-radius:6px;box-shadow:none;" />
-  <figcaption style="text-align:left;font-size:0.88em;color:#666;margin-top:8px;max-width:880px;margin-left:auto;margin-right:auto;">PCA-RGB maps encode the top three principal components of patch features as RGB channels. LAViFiT adapts a standard ViT-L image backbone to produce spatially coherent maps visually comparable to those of V-JEPA2/2.1, while showing clearer emphasis on interacting instruments and target tissues and less background detail in the displayed example.</figcaption>
+  <img src="{{ site.baseurl }}/images/projects/lavifit/lavifit_teaser.png" alt="PCA-RGB maps comparing ViT-L, V-JEPA2, V-JEPA2.1 and LAViF" style="width:100%;max-width:880px;display:block;margin:0 auto;border:1px solid #e6e8ee;border-radius:6px;box-shadow:none;" />
+  <figcaption style="text-align:left;font-size:0.88em;color:#666;margin-top:8px;max-width:880px;margin-left:auto;margin-right:auto;">PCA-RGB shows the top three principal components of patch features as RGB. LAViF adapts a plain ViT-L into spatially coherent maps, with clearer emphasis on the interacting instrument and target tissue.</figcaption>
 </figure>
 
 <hr />
 
 <h3><span style="color: #8C1D40;"><strong>Abstract</strong></span></h3>
 <p>
-Recognizing instrument&ndash;tissue interactions is essential for context-aware surgical AI. Vision-language models offer a natural way to inject semantic structure into surgical representations by aligning video features with textual action descriptions. However, pretrained encoders may lack spatial coherence, while global semantic alignment does not ensure precise spatial and temporal representations. By analyzing frame-to-frame feature changes, we find that semantic alignment increases their dimensionality, but larger increases do not necessarily improve recognition; encoders also differ in how strongly dominant changes localize to interaction regions. Motivated by these findings, we introduce <strong>LAViFiT</strong>, which compresses frame-to-frame changes into latent actions and predicts next-frame features during end-to-end video&ndash;language alignment. Without additional spatial or motion annotations, LAViFiT improves the interaction grounding of leading feature changes and temporal-direction sensitivity in our evaluated settings. We further characterize how action capacity and prediction strength affect recognition across encoders and triplet components. Using image encoders without large-scale video pretraining, LAViFiT achieves competitive recognition with faster inference and smaller INT4 accuracy drops than V-JEPA2/2.1, supporting its deployment potential.
+Pretrained encoders often lack spatial coherence, and global vision&ndash;language alignment does not guarantee precise spatial or temporal structure. <strong>LAViF</strong> compresses frame-to-frame feature changes into latent actions and predicts next-frame features during end-to-end video&ndash;language alignment. Without extra spatial or motion annotations it improves interaction grounding and temporal-direction sensitivity, and with ordinary image encoders reaches competitive recognition at higher throughput and smaller INT4 drops than V-JEPA2/2.1.
 </p>
 
 <hr />
 
 <h3><span style="color: #8C1D40;"><strong>Contributions</strong></span></h3>
 <ol style="line-height:1.7;">
-  <li><strong>Empirical finding.</strong> Semantic alignment reshapes visual transition structure: strong recognition can coincide with compact spectra and interaction-grounded leading directions, whereas greater dimensional expansion alone does not imply better recognition.</li>
-  <li><strong>Finding-driven method.</strong> LAViFiT explicitly shapes this structure through a Causal Transition IDM, a compact predictive action bottleneck, video&ndash;language alignment, and patch-level SIG regularization (SIGReg).</li>
-  <li><strong>Empirical validation.</strong> Across encoders and datasets, LAViFiT improves interaction grounding, temporal-direction sensitivity, and recognition without additional spatial or motion supervision, with faster inference and smaller degradation under INT4 quantization than the evaluated pretrained video encoders.</li>
+  <li>Semantic alignment reshapes visual transition structure &mdash; and more dimensional expansion does not mean better recognition.</li>
+  <li>LAViF shapes that structure with a Causal Transition IDM, a compact predictive action bottleneck, and patch-level SIGReg.</li>
+  <li>Across three encoders and two datasets: better grounding without extra supervision, faster inference, smaller INT4 drops.</li>
 </ol>
 
 <hr />
@@ -52,8 +55,8 @@ Recognizing instrument&ndash;tissue interactions is essential for context-aware 
 <h3><span style="color: #8C1D40;"><strong>Method</strong></span></h3>
 
 <figure style="margin: 18px 0 28px;">
-  <img src="{{ site.baseurl }}/images/projects/lavifit/lavifit_pipeline.png" alt="LAViFiT pipeline: vision encoder, IDM+FWM training, vision-language alignment" loading="lazy" style="width:100%;max-width:960px;display:block;margin:0 auto;border:1px solid #e6e8ee;border-radius:6px;box-shadow:none;" />
-  <figcaption style="text-align:left;font-size:0.88em;color:#666;margin-top:8px;max-width:960px;margin-left:auto;margin-right:auto;">Each frame of a surgical clip is encoded independently and mean-pooled into a per-frame state, with patch-level SIGReg stabilizing local features. A Causal Transition <strong>IDM</strong> compresses the difference between consecutive states into a compact action token, which conditions a <strong>forward model</strong> that predicts the next state. States and actions are then aggregated by a transformer and aligned against triplet text descriptions.</figcaption>
+  <img src="{{ site.baseurl }}/images/projects/lavifit/lavifit_pipeline.png" alt="LAViF pipeline: vision encoder, IDM+FWM training, vision-language alignment" loading="lazy" style="width:100%;max-width:960px;display:block;margin:0 auto;border:1px solid #e6e8ee;border-radius:6px;box-shadow:none;" />
+  <figcaption style="text-align:left;font-size:0.88em;color:#666;margin-top:8px;max-width:960px;margin-left:auto;margin-right:auto;">Frames are encoded independently and pooled into per-frame states, with patch-level SIGReg stabilizing local features. A Causal Transition <strong>IDM</strong> compresses consecutive-state differences into an action token that conditions a <strong>forward model</strong>; states and actions are aggregated and aligned to triplet text.</figcaption>
 </figure>
 
 <hr />
@@ -160,17 +163,17 @@ Recognizing instrument&ndash;tissue interactions is essential for context-aware 
     </tr>
 
     <tr style="border-top: 2px solid #8C1D40; background: #fff8e1;">
-      <td style="padding:6px;"><strong>LAViFiT &mdash; ViT-L</strong></td>
+      <td style="padding:6px;"><strong>LAViF &mdash; ViT-L</strong></td>
       <td style="padding:6px; text-align:right;">32.15</td><td style="padding:6px; text-align:right;">93.24</td><td style="padding:6px; text-align:right;">68.29</td><td style="padding:6px; text-align:right;">47.05</td>
       <td style="padding:6px; text-align:right;">32.82</td><td style="padding:6px; text-align:right;">92.82</td><td style="padding:6px; text-align:right;">68.28</td><td style="padding:6px; text-align:right;">60.63</td>
     </tr>
     <tr style="border-top: 1px solid #f0f2f5; background: #fff8e1;">
-      <td style="padding:6px;"><strong>LAViFiT &mdash; DINOv2-L</strong></td>
+      <td style="padding:6px;"><strong>LAViF &mdash; DINOv2-L</strong></td>
       <td style="padding:6px; text-align:right;">33.13</td><td style="padding:6px; text-align:right;"><u>94.60</u></td><td style="padding:6px; text-align:right;">68.91</td><td style="padding:6px; text-align:right;">48.81</td>
       <td style="padding:6px; text-align:right;"><u>38.14</u></td><td style="padding:6px; text-align:right;"><u>96.03</u></td><td style="padding:6px; text-align:right;"><u>73.01</u></td><td style="padding:6px; text-align:right;"><u>65.21</u></td>
     </tr>
     <tr style="border-top: 1px solid #f0f2f5; background: #fff8e1;">
-      <td style="padding:6px;"><strong>LAViFiT &mdash; SurgeNet-L</strong></td>
+      <td style="padding:6px;"><strong>LAViF &mdash; SurgeNet-L</strong></td>
       <td style="padding:6px; text-align:right;">32.78</td><td style="padding:6px; text-align:right;"><strong>95.02</strong></td><td style="padding:6px; text-align:right;"><strong>71.64</strong></td><td style="padding:6px; text-align:right;"><strong>50.89</strong></td>
       <td style="padding:6px; text-align:right;"><strong>38.85</strong></td><td style="padding:6px; text-align:right;"><strong>96.74</strong></td><td style="padding:6px; text-align:right;">72.82</td><td style="padding:6px; text-align:right;"><strong>65.73</strong></td>
     </tr>
@@ -178,7 +181,7 @@ Recognizing instrument&ndash;tissue interactions is essential for context-aware 
 </table>
 
 <p style="font-size:0.88em;color:#666;margin-top:10px;">
-LAViFiT gives the best instrument, verb, and target mAP on CholecT50 and the best triplet, instrument, and target mAP on ProstaTD, using image encoders without large-scale video pretraining. On CholecT50 triplet mAP it remains below Chain-of-Look, which uses a task-specific classification head rather than video&ndash;language alignment. ProstaTD entries are means over the five folds.
+Best instrument, verb and target mAP on CholecT50, and best triplet, instrument and target mAP on ProstaTD &mdash; from image encoders without large-scale video pretraining. Chain-of-Look still leads CholecT50 triplet mAP, using a task-specific classification head. ProstaTD values are five-fold means.
 </p>
 
 <hr />
@@ -186,8 +189,8 @@ LAViFiT gives the best instrument, verb, and target mAP on CholecT50 and the bes
 <h3><span style="color: #8C1D40;"><strong>Spatial feature organization</strong></span></h3>
 
 <figure style="margin: 18px 0 28px;">
-  <img src="{{ site.baseurl }}/images/projects/lavifit/lavifit_pca_rgb.png" alt="PCA-RGB maps comparing LAViFiT, no-IDM+FDM baselines and V-JEPA2/2.1 over time" loading="lazy" style="width:100%;max-width:880px;display:block;margin:0 auto;border:1px solid #e6e8ee;border-radius:6px;box-shadow:none;" />
-  <figcaption style="text-align:left;font-size:0.88em;color:#666;margin-top:8px;max-width:880px;margin-left:auto;margin-right:auto;">PCA-RGB maps over a frame sequence, comparing the full LAViFiT model against the same encoders trained without IDM+FDM and against finetuned V-JEPA2/2.1. Latent-action prediction produces more spatially coherent patch structure across all three backbones.</figcaption>
+  <img src="{{ site.baseurl }}/images/projects/lavifit/lavifit_pca_rgb.png" alt="PCA-RGB maps comparing LAViF, no-IDM+FDM baselines and V-JEPA2/2.1 over time" loading="lazy" style="width:100%;max-width:880px;display:block;margin:0 auto;border:1px solid #e6e8ee;border-radius:6px;box-shadow:none;" />
+  <figcaption style="text-align:left;font-size:0.88em;color:#666;margin-top:8px;max-width:880px;margin-left:auto;margin-right:auto;">PCA-RGB over a frame sequence: full LAViF against the same encoders without IDM+FDM, and against finetuned V-JEPA2/2.1.</figcaption>
 </figure>
 
 <style>
@@ -291,7 +294,7 @@ LAViFiT gives the best instrument, verb, and target mAP on CholecT50 and the bes
 </noscript>
 
 <p style="font-size:0.88em;color:#666;max-width:880px;margin:4px auto 0;">
-Patch-level PCA-RGB as the prediction weight <em>&lambda;</em><sub>pred</sub> is swept at fixed <em>d<sub>a</sub></em> = 128. Predictive pressure reorganizes local feature structure for every encoder, but its effect on boundary clarity and local detail is encoder dependent. Quantitatively, raising <em>&lambda;</em><sub>pred</sub> from 0 to 1 improves ViT-L verb and triplet mAP by 2.81 and 1.40 points and SurgeNet-L verb and target mAP by 1.75 and 1.51 points, while lowering SurgeNet-L triplet mAP by 0.79 &mdash; stronger predictive pressure does not uniformly benefit every triplet component.
+<em>&lambda;</em><sub>pred</sub> swept at fixed <em>d<sub>a</sub></em> = 128. Predictive pressure reorganizes local structure for every encoder, but unevenly: going 0 &rarr; 1 gains ViT-L 2.81 verb / 1.40 triplet mAP and SurgeNet-L 1.75 verb / 1.51 target mAP, while costing SurgeNet-L 0.79 triplet mAP.
 </p>
 
 <details style="max-width:880px;margin:16px auto 28px;">
@@ -304,7 +307,7 @@ Patch-level PCA-RGB as the prediction weight <em>&lambda;</em><sub>pred</sub> is
 
 <figure style="margin: 18px 0 28px;">
   <img src="{{ site.baseurl }}/images/projects/lavifit/lavifit_pca_ablation.png" alt="PCA-RGB ablation across three encoders: full model, without patch-level SIGReg, and without IDM+FDM" loading="lazy" style="width:100%;max-width:880px;display:block;margin:0 auto;border:1px solid #e6e8ee;border-radius:6px;box-shadow:none;" />
-  <figcaption style="text-align:left;font-size:0.88em;color:#666;margin-top:8px;max-width:880px;margin-left:auto;margin-right:auto;">PCA-RGB comparison of the full LAViFiT model (<em>d<sub>a</sub></em> = 128) against the no-patch-SIGReg and no-IDM+FDM variants, for ViT-L/16, DINOv2-L/16 and SurgeNet-L/14. Latent-action modeling visibly reorganizes patch-level representations, while patch-level SIGReg further affects the preservation and separation of local visual structure.</figcaption>
+  <figcaption style="text-align:left;font-size:0.88em;color:#666;margin-top:8px;max-width:880px;margin-left:auto;margin-right:auto;">Full LAViF (<em>d<sub>a</sub></em> = 128) against no-patch-SIGReg and no-IDM+FDM, for ViT-L/16, DINOv2-L/16 and SurgeNet-L/14.</figcaption>
 </figure>
 
 <hr />
@@ -312,7 +315,7 @@ Patch-level PCA-RGB as the prediction weight <em>&lambda;</em><sub>pred</sub> is
 <h3><span style="color: #8C1D40;"><strong>Deployment efficiency</strong></span></h3>
 
 <p>
-Because LAViFiT encodes each frame independently before a lightweight latent-action aggregation, its attention cost scales <em>linearly</em> in clip length, <em>O</em>(<em>T</em>&middot;<em>P</em><sup>2</sup> + <em>T</em><sup>2</sup>), whereas spatiotemporal encoders attend jointly over all <em>T</em>&middot;<em>P</em> tokens at <em>O</em>(<em>T</em><sup>2</sup>&middot;<em>P</em><sup>2</sup>), so the gap widens as clips get longer.
+LAViF encodes frames independently, so attention cost is linear in clip length, <em>O</em>(<em>T</em>&middot;<em>P</em><sup>2</sup> + <em>T</em><sup>2</sup>), against <em>O</em>(<em>T</em><sup>2</sup>&middot;<em>P</em><sup>2</sup>) for spatiotemporal encoders &mdash; the gap widens with longer clips.
 </p>
 
 <table style="width:100%; border-collapse: collapse; font-size: 0.82em; border: 1px solid #e6e8ee; margin-top:14px;">
@@ -333,19 +336,19 @@ Because LAViFiT encodes each frame independently before a lightweight latent-act
   <tbody>
     <tr style="background:#f7f8fb;"><td colspan="7" style="padding:6px; font-style:italic; font-weight:600;">Ours (per-frame)</td></tr>
     <tr style="border-top: 1px solid #f0f2f5; background: #fff8e1;">
-      <td style="padding:6px;"><strong>LAViFiT &mdash; ViT-L</strong></td>
+      <td style="padding:6px;"><strong>LAViF &mdash; ViT-L</strong></td>
       <td style="padding:6px;">per-frame</td>
       <td style="padding:6px; text-align:right;">224</td><td style="padding:6px; text-align:right;">304M</td>
       <td style="padding:6px; text-align:right;"><strong>13.7</strong></td><td style="padding:6px; text-align:right;"><strong>72.8</strong></td><td style="padding:6px; text-align:right;"><strong>7.5</strong></td>
     </tr>
     <tr style="border-top: 1px solid #f0f2f5; background: #fff8e1;">
-      <td style="padding:6px;"><strong>LAViFiT &mdash; DINOv2-L</strong></td>
+      <td style="padding:6px;"><strong>LAViF &mdash; DINOv2-L</strong></td>
       <td style="padding:6px;">per-frame</td>
       <td style="padding:6px; text-align:right;">224</td><td style="padding:6px; text-align:right;">304M</td>
       <td style="padding:6px; text-align:right;">19.7</td><td style="padding:6px; text-align:right;">50.8</td><td style="padding:6px; text-align:right;">10.9</td>
     </tr>
     <tr style="border-top: 1px solid #f0f2f5; background: #fff8e1;">
-      <td style="padding:6px;"><strong>LAViFiT &mdash; SurgeNet-L</strong></td>
+      <td style="padding:6px;"><strong>LAViF &mdash; SurgeNet-L</strong></td>
       <td style="padding:6px;">per-frame</td>
       <td style="padding:6px; text-align:right;">224</td><td style="padding:6px; text-align:right;">304M</td>
       <td style="padding:6px; text-align:right;">41.5</td><td style="padding:6px; text-align:right;">24.1</td><td style="padding:6px; text-align:right;">20.2</td>
@@ -370,7 +373,7 @@ Because LAViFiT encodes each frame independently before a lightweight latent-act
 </table>
 
 <p style="font-size:0.88em;color:#666;margin-top:10px;">
-At matched backbone scale (~300M parameters), the ViT-L and DINOv2-L variants reach 50&ndash;73 clips/s, roughly 3.5&ndash;5&times; the throughput of the spatiotemporal baselines (&le; 14.7 clips/s). The SurgeNet-L variant is slower at 24.1 clips/s, still above every video baseline.
+At ~300M parameters, ViT-L and DINOv2-L reach 50&ndash;73 clips/s, about 3.5&ndash;5&times; the spatiotemporal baselines (&le; 14.7). SurgeNet-L is slower at 24.1 clips/s, still above every video baseline.
 </p>
 
 <table style="width:100%; max-width:640px; border-collapse: collapse; font-size: 0.82em; border: 1px solid #e6e8ee; margin-top:14px;">
@@ -433,7 +436,8 @@ At matched backbone scale (~300M parameters), the ViT-L and DINOv2-L variants re
 <h3><span style="color: #8C1D40;"><strong>Citation</strong></span></h3>
 <pre style="background:#f7f8fb;border:1px solid #e6e8ee;border-radius:6px;padding:14px 16px;font-size:0.85em;line-height:1.55;overflow-x:auto;color:#1d2230;"><code>@article{cheng2026lavifit,
   title={Latent-Action-Guided Vision-Language Contrastive Learning for Surgical Interaction Recognition},
-  author={Cheng, Jiajun and Tripathi, Subarna and Liu, Sainan and Yu, Xiaofan and Lin, Shan},
+  author={Cheng, Jiajun and Liu, Sainan and Tripathi, Subarna and Yu, Xiaofan and Lin, Shan},
+  journal={arXiv preprint arXiv:2607.19889},
   year={2026}
 }</code></pre>
 
@@ -449,14 +453,14 @@ At matched backbone scale (~300M parameters), the ViT-L and DINOv2-L variants re
   </div>
 
   <div class="person-card">
-    <img src="{{ site.baseurl }}/images/teampic/subarna-tripathi.png" alt="Subarna Tripathi" style="width:110px;height:110px;border-radius:50%;object-fit:cover;margin:0 auto;display:block;box-shadow:none;" />
-    <div class="person-card-name"><a href="https://subarnatripathi.github.io/" target="_blank" style="color: #333; text-decoration: underline; text-underline-offset: 2px;">Subarna Tripathi</a></div>
+    <img src="{{ site.baseurl }}/images/teampic/sainan-liu.jpg" alt="Sainan Liu" style="width:110px;height:110px;border-radius:50%;object-fit:cover;margin:0 auto;display:block;box-shadow:none;" />
+    <div class="person-card-name"><a href="https://www.sainanliu.com/" target="_blank" style="color: #333; text-decoration: underline; text-underline-offset: 2px;">Sainan Liu</a></div>
     <div class="person-card-affil">Intel</div>
   </div>
 
   <div class="person-card">
-    <img src="{{ site.baseurl }}/images/teampic/sainan-liu.jpg" alt="Sainan Liu" style="width:110px;height:110px;border-radius:50%;object-fit:cover;margin:0 auto;display:block;box-shadow:none;" />
-    <div class="person-card-name"><a href="https://www.sainanliu.com/" target="_blank" style="color: #333; text-decoration: underline; text-underline-offset: 2px;">Sainan Liu</a></div>
+    <img src="{{ site.baseurl }}/images/teampic/subarna-tripathi.png" alt="Subarna Tripathi" style="width:110px;height:110px;border-radius:50%;object-fit:cover;margin:0 auto;display:block;box-shadow:none;" />
+    <div class="person-card-name"><a href="https://subarnatripathi.github.io/" target="_blank" style="color: #333; text-decoration: underline; text-underline-offset: 2px;">Subarna Tripathi</a></div>
     <div class="person-card-affil">Intel</div>
   </div>
 
