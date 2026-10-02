@@ -55,8 +55,8 @@ Pretrained encoders often lack spatial coherence, and global vision&ndash;langua
 <h3><span style="color: #8C1D40;"><strong>Method</strong></span></h3>
 
 <figure style="margin: 18px 0 28px;">
-  <img src="{{ site.baseurl }}/images/projects/lavifit/lavifit_pipeline.png" alt="LAViF pipeline: vision encoder, IDM+FWM training, vision-language alignment" loading="lazy" style="width:100%;max-width:960px;display:block;margin:0 auto;border:1px solid #e6e8ee;border-radius:6px;box-shadow:none;" />
-  <figcaption style="text-align:left;font-size:0.88em;color:#666;margin-top:8px;max-width:960px;margin-left:auto;margin-right:auto;">Frames are encoded independently and pooled into per-frame states, with patch-level SIGReg stabilizing local features. A Causal Transition <strong>IDM</strong> compresses consecutive-state differences into an action token that conditions a <strong>forward model</strong>; states and actions are aggregated and aligned to triplet text.</figcaption>
+  <img src="{{ site.baseurl }}/images/projects/lavifit/lavifit_pipeline.png" alt="LAViF pipeline: vision encoder, IDM+FDM training, vision-language alignment" loading="lazy" style="width:100%;max-width:960px;display:block;margin:0 auto;border:1px solid #e6e8ee;border-radius:6px;box-shadow:none;" />
+  <figcaption style="text-align:left;font-size:0.88em;color:#666;margin-top:8px;max-width:960px;margin-left:auto;margin-right:auto;">Frames are encoded independently and pooled into per-frame states, with patch-level SIGReg stabilizing local features. A Causal Transition <strong>IDM</strong> compresses consecutive-state differences into an action token that conditions a DiT <strong>forward dynamics model (FDM)</strong>; states and actions are aggregated and aligned to triplet text.</figcaption>
 </figure>
 
 <hr />
