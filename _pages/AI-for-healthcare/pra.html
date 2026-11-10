@@ -1,0 +1,94 @@
+---
+title: "PRA | MARGIN Lab"
+layout: textlay
+excerpt: "PRA — Predictive Rubric Alignment for Video-Based Surgical Skill Assessment"
+sitemap: false
+permalink: /AI-for-healthcare/pra/
+breadcrumb:
+  - title: Research
+  - title: AI for Healthcare
+    url: /AI-for-healthcare/
+  - title: PRA
+---
+
+<h2><span style="color: #8C1D40;"><strong>PRA</strong></span></h2>
+<p style="font-size: 1.05em; color: #555; margin-top: -4px;">Predictive Rubric Alignment for Video-Based Surgical Skill Assessment</p>
+
+<p class="pub-authors" style="color:#555;font-size:0.95em;margin-bottom:2px;">
+Jiajun Cheng<sup>1</sup>, Haidar M. Abdul-Muhsin<sup>2</sup>, Juha Choi<sup>1</sup>, Shan Lin<sup>1</sup>
+</p>
+<p style="color:#777;font-size:0.86em;margin-top:0;">
+<sup>1</sup>Arizona State University &nbsp;&middot;&nbsp; <sup>2</sup>Mayo Clinic
+</p>
+
+<div style="display: flex; gap: 10px; flex-wrap: wrap; margin: 14px 0 4px; align-items:center;">
+  <span style="display:inline-block;padding:8px 14px;border:1px dashed #c9ccd6;color:#888;border-radius:6px;font-weight:600;font-size:0.9em;">📄 Preprint &mdash; coming soon</span>
+  <span style="display:inline-block;padding:8px 14px;border:1px dashed #c9ccd6;color:#888;border-radius:6px;font-weight:600;font-size:0.9em;">💻 Code &mdash; coming soon</span>
+</div>
+
+<figure style="margin: 22px 0 28px;">
+  <img src="{{ site.baseurl }}/images/projects/pra/pra_teaser.png" alt="Conventional description matching versus PRA, and Grad-CAM on JIGSAWS rubric items not used in training" style="width:100%;max-width:640px;display:block;margin:0 auto;border:1px solid #e6e8ee;border-radius:6px;box-shadow:none;" />
+  <figcaption style="text-align:left;font-size:0.88em;color:#666;margin-top:8px;max-width:640px;margin-left:auto;margin-right:auto;">(a) Conventional description matching turns the cosine similarities between the video feature and the level descriptions into level probabilities and trains them with (binary) cross-entropy. <strong>PRA</strong> instead regresses one rater-weighted point between the descriptions and reads the score on the path through them. (b) Grad-CAM on a JIGSAWS suturing video for rubric items not used in training; both models are trained on two AIxSuture items.</figcaption>
+</figure>
+
+<hr />
+
+<h3><span style="color: #8C1D40;"><strong>Abstract</strong></span></h3>
+<p>
+Surgical skill assessment is essential for training, yet automated methods commonly use classifiers or regressors tied to a fixed rubric. Vision&ndash;language models offer an opportunity to assess skill through natural-language descriptions of performance levels. We explore an alternative to probability-based scoring with <strong>Predictive Rubric Alignment (PRA)</strong>, which learns to predict a rater-weighted combination of level-description embeddings. Connecting adjacent descriptions defines a score-parameterized path, and the predicted embedding is mapped to its closest point on this path to read the score. PRA supports fixed rubric items through learned queries, while PRA-cond derives queries from item names, allowing new rubrics to be supplied as text without item-specific parameters. On AIxSuture, PRA outperforms published baselines and same-encoder description-matching and regression controls in skill classification. Trained on only two AIxSuture items, PRA-cond transfers zero-shot to JIGSAWS items not used in training, yielding positive score correlations and greater Grad-CAM overlap with instruments and suture than a description-matching baseline. These results support predictive rubric alignment as a promising direction for flexible and explainable surgical skill assessment.
+</p>
+
+<hr />
+
+<h3><span style="color: #8C1D40;"><strong>Contributions</strong></span></h3>
+<ol style="line-height:1.7;">
+  <li>PRA, an alternative formulation for VLM-based surgical skill assessment that supports fixed and text-specified rubric items, with potential to adapt to rubric items not used in training.</li>
+  <li>Strong performance on AIxSuture, and improved visual grounding, measured by Grad-CAM overlap with instruments and suture, during zero-shot transfer to JIGSAWS.</li>
+</ol>
+
+<hr />
+
+<h3><span style="color: #8C1D40;"><strong>Method</strong></span></h3>
+
+<figure style="margin: 18px 0 28px;">
+  <img src="{{ site.baseurl }}/images/projects/pra/pra_pipeline.png" alt="PRA pipeline: video, item-query and rubric branches with cross-modal prediction" loading="lazy" style="width:100%;max-width:960px;display:block;margin:0 auto;border:1px solid #e6e8ee;border-radius:6px;box-shadow:none;" />
+  <figcaption style="text-align:left;font-size:0.88em;color:#666;margin-top:8px;max-width:960px;margin-left:auto;margin-right:auto;">Eight clips are encoded by V-JEPA 2.1, and an item query cross-attends to the video tokens to give the video embedding <em>z<sub>i</sub></em>. The level descriptions of the item are embedded with EmbeddingGemma and mixed with the rater scores into the target <em>&tau;<sub>i</sub></em>. Predictors <em>h<sub>v</sub></em> and <em>h<sub>t</sub></em> each regress the stop-gradient embedding of the other modality, with SIGReg on the embeddings. At test time the score is read at the closest point on the path through the level descriptions. <strong>PRA-item</strong> learns one query per item of a fixed rubric; <strong>PRA-cond</strong> computes the query from the item name, so new rubric items can be given as text.</figcaption>
+</figure>
+
+<hr />
+
+<h3><span style="color: #8C1D40;"><strong>Citation</strong></span></h3>
+<p style="color:#888;">BibTeX will be posted together with the preprint.</p>
+
+<hr />
+
+<h3><span style="color: #8C1D40;"><strong>Authors</strong></span></h3>
+<div class="person-grid">
+
+  <div class="person-card">
+    <img src="{{ site.baseurl }}/images/teampic/jiajun.png" alt="Jiajun Cheng" style="width:110px;height:110px;border-radius:50%;object-fit:cover;margin:0 auto;display:block;box-shadow:none;" />
+    <div class="person-card-name">Jiajun Cheng</div>
+    <div class="person-card-affil">ASU</div>
+  </div>
+
+  <div class="person-card">
+    <div style="width:110px;height:110px;border-radius:50%;margin:0 auto;background:#eef0f4;color:#8C1D40;display:flex;align-items:center;justify-content:center;font-size:1.9em;font-weight:600;">HA</div>
+    <div class="person-card-name">Haidar M. Abdul-Muhsin</div>
+    <div class="person-card-affil">Mayo Clinic</div>
+  </div>
+
+  <div class="person-card">
+    <img src="{{ site.baseurl }}/images/teampic/juha_choi.png" alt="Juha Choi" style="width:110px;height:110px;border-radius:50%;object-fit:cover;margin:0 auto;display:block;box-shadow:none;" />
+    <div class="person-card-name">Juha Choi</div>
+    <div class="person-card-affil">ASU</div>
+  </div>
+
+  <div class="person-card">
+    <img src="{{ site.baseurl }}/images/teampic/shanlin.jpg" alt="Shan Lin" style="width:110px;height:110px;border-radius:50%;object-fit:cover;margin:0 auto;display:block;box-shadow:none;" />
+    <div class="person-card-name"><a href="https://shanl03.github.io/" target="_blank" style="color: #333; text-decoration: underline; text-underline-offset: 2px;">Shan Lin</a></div>
+    <div class="person-card-affil">ASU</div>
+  </div>
+
+</div>
+
+<div style="margin-bottom: 40px;"></div>
