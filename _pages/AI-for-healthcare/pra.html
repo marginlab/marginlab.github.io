@@ -1,7 +1,7 @@
 ---
 title: "PRA | MARGIN Lab"
 layout: textlay
-excerpt: "PRA — Predictive Rubric Alignment for Video-Based Surgical Skill Assessment"
+excerpt: "PRA — Toward Cross-Rubric Surgical Skill Assessment via Joint Embedding Prediction"
 sitemap: false
 permalink: /AI-for-healthcare/pra/
 breadcrumb:
@@ -12,7 +12,7 @@ breadcrumb:
 ---
 
 <h2><span style="color: #8C1D40;"><strong>PRA</strong></span></h2>
-<p style="font-size: 1.05em; color: #555; margin-top: -4px;">Predictive Rubric Alignment for Video-Based Surgical Skill Assessment</p>
+<p style="font-size: 1.05em; color: #555; margin-top: -4px;">Toward Cross-Rubric Surgical Skill Assessment via Joint Embedding Prediction</p>
 
 <p class="pub-authors" style="color:#555;font-size:0.95em;margin-bottom:2px;">
 Jiajun Cheng<sup>1</sup>, Haidar M. Abdul-Muhsin<sup>2</sup>, Juha Choi<sup>1</sup>, Shan Lin<sup>1</sup>
@@ -35,15 +35,16 @@ Jiajun Cheng<sup>1</sup>, Haidar M. Abdul-Muhsin<sup>2</sup>, Juha Choi<sup>1</s
 
 <h3><span style="color: #8C1D40;"><strong>Abstract</strong></span></h3>
 <p>
-Surgical skill assessment is essential for training, yet automated methods commonly use classifiers or regressors tied to a fixed rubric. Vision&ndash;language models offer an opportunity to assess skill through natural-language descriptions of performance levels. We explore an alternative to probability-based scoring with <strong>Predictive Rubric Alignment (PRA)</strong>, which learns to predict a rater-weighted combination of level-description embeddings. Connecting adjacent descriptions defines a score-parameterized path, and the predicted embedding is mapped to its closest point on this path to read the score. PRA supports fixed rubric items through learned queries, while PRA-cond derives queries from item names, allowing new rubrics to be supplied as text without item-specific parameters. On AIxSuture, PRA outperforms published baselines and same-encoder description-matching and regression controls in skill classification. Trained on only two AIxSuture items, PRA-cond transfers zero-shot to JIGSAWS items not used in training, yielding positive score correlations and greater Grad-CAM overlap with instruments and suture than a description-matching baseline. These results support predictive rubric alignment as a promising direction for flexible and explainable surgical skill assessment.
+Expert review of surgical videos is essential for surgical training but labor-intensive, motivating AI-assisted skill assessment to provide feedback at scale. Although surgical assessment rubrics may use different language to describe similar skills, existing automated methods commonly predict predefined skill levels or numerical scores tied to fixed rubrics, limiting their ability to transfer across semantically equivalent assessment criteria. We propose <strong>Predictive Rubric Alignment (PRA)</strong>, a joint embedding prediction approach that scores surgical videos using natural-language descriptions of skill levels. Rather than matching level probabilities, PRA predicts a rater-weighted combination of skill-level description embeddings. Adjacent description features define a score-parameterized path, and the predicted embedding is projected onto this path to read the score. We introduce two variants: <em>PRA-item</em>, which uses learned queries for predefined assessment items, and <em>PRA-cond</em>, which generates queries from textual item names to enable assessment of unseen items without retraining. On AIxSuture, a dataset of expert-rated suturing videos, PRA outperforms published baselines in skill classification. We further evaluate zero-shot transfer to the smaller surgical skill assessment benchmark JIGSAWS. Trained on only two AIxSuture rubric items, PRA-cond assesses unseen JIGSAWS items without further training, yielding positive score correlations and greater Grad-CAM overlap with instruments and suture than a description-matching baseline. These results support predictive rubric alignment as a promising direction for flexible and explainable automated surgical skill assessment.
 </p>
 
 <hr />
 
 <h3><span style="color: #8C1D40;"><strong>Contributions</strong></span></h3>
 <ol style="line-height:1.7;">
-  <li>PRA, an alternative formulation for VLM-based surgical skill assessment that supports fixed and text-specified rubric items, with potential to adapt to rubric items not used in training.</li>
-  <li>Strong performance on AIxSuture, and improved visual grounding, measured by Grad-CAM overlap with instruments and suture, during zero-shot transfer to JIGSAWS.</li>
+  <li>PRA, which formulates surgical skill scoring as predicting a rater-weighted combination of performance-level description embeddings and reads the score by projection onto the description path, providing an alternative to level-probability matching.</li>
+  <li>PRA-cond, which accepts rubric item names and performance descriptions as text, enabling zero-shot assessment of rubric items not used during training.</li>
+  <li>An evaluation on AIxSuture and zero-shot transfer to JIGSAWS: improved AIxSuture performance over published baselines and same-encoder controls, positive zero-shot score correlations, and greater Grad-CAM overlap with instruments and suture than a description-matching baseline.</li>
 </ol>
 
 <hr />

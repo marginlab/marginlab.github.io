@@ -1,3 +1,27 @@
+- title: "Toward Cross-Rubric Surgical Skill Assessment via Joint Embedding Prediction"
+  image: pra.png
+  authors: Jiajun Cheng, Haidar M. Abdul-Muhsin, Juha Choi, Shan Lin
+  year: 2026
+  key_tags: ["Surgical Skill Assessment", "Vision-Language"]
+  code: https://github.com/marginlab/Toward-Cross-Rubric-Surgical-Skill-Assessment-via-Joint-Embedding-Prediction
+  project: https://marginlab.github.io/AI-for-healthcare/pra/
+  paper_soon: 1
+  link:
+    url: https://marginlab.github.io/AI-for-healthcare/pra/
+    display: arXiv (coming soon)
+  highlight: 1
+
+- title: "Latent-Action-Guided Video-Language Feature Learning for Surgical Instrument-Tissue Interaction Recognition"
+  image: lavifit.png
+  authors: Jiajun Cheng, Sainan Liu, Subarna Tripathi, Xiaofan Yu, Shan Lin
+  year: 2026
+  key_tags: ["Latent Actions", "Surgical VLM"]
+  project: https://marginlab.github.io/AI-for-healthcare/lavif/
+  link:
+    url: https://arxiv.org/pdf/2607.19889
+    display: arXiv 2026
+  highlight: 1
+
 - title: "OphIn-500K: CuratingWeb-Scale Visual Instructions for Scaling Ophthalmic Multimodal Large Language Models"
   image: OphIn-500K.png
   authors: Xuanzhao Dong, Wenhui Zhu, Xiwen Chen, Hao Wang, Xin Li, Yujian Xiong, Jiajun Cheng, Jingjing Wang, Xiaobing Yu, Haiyu Wu, Shao Tang, Zhipeng Wang, Langechuan Liu, Shan Lin, Oana Dumitrascu, Yalin Wang
