@@ -24,6 +24,7 @@ Jiajun Cheng<sup>1</sup>, Haidar M. Abdul-Muhsin<sup>2</sup>, Juha Choi<sup>1</s
 <div style="display: flex; gap: 10px; flex-wrap: wrap; margin: 14px 0 4px; align-items:center;">
   <a href="https://arxiv.org/abs/2611.15125" target="_blank" style="display:inline-block;padding:8px 14px;border:1px solid #8C1D40;color:#8C1D40;border-radius:6px;text-decoration:none;font-weight:600;font-size:0.9em;">📄 Paper (arXiv)</a>
   <a href="https://github.com/marginlab/Toward-Cross-Rubric-Surgical-Skill-Assessment-via-Joint-Embedding-Prediction" target="_blank" style="display:inline-block;padding:8px 14px;border:1px solid #8C1D40;color:#8C1D40;border-radius:6px;text-decoration:none;font-weight:600;font-size:0.9em;">💻 Code</a>
+  <a href="#demo" style="display:inline-block;padding:8px 14px;border:1px solid #8C1D40;background:#8C1D40;color:#fff;border-radius:6px;text-decoration:none;font-weight:600;font-size:0.9em;">▶ Interactive demo</a>
 </div>
 
 <figure style="margin: 22px 0 28px;">
@@ -55,6 +56,13 @@ Expert review of surgical videos is essential for surgical training but labor-in
   <img src="{{ site.baseurl }}/images/projects/pra/pra_pipeline.png" alt="PRA pipeline: video, item-query and rubric branches with cross-modal prediction" loading="lazy" style="width:100%;max-width:960px;display:block;margin:0 auto;border:1px solid #e6e8ee;border-radius:6px;box-shadow:none;" />
   <figcaption style="text-align:left;font-size:0.88em;color:#666;margin-top:8px;max-width:960px;margin-left:auto;margin-right:auto;">Eight clips are encoded by V-JEPA 2.1, and an item query cross-attends to the video tokens to give the video embedding <em>z<sub>i</sub></em>. The level descriptions of the item are embedded with EmbeddingGemma and mixed with the rater scores into the target <em>&tau;<sub>i</sub></em>. Predictors <em>h<sub>v</sub></em> and <em>h<sub>t</sub></em> each regress the stop-gradient embedding of the other modality, with SIGReg on the embeddings. At test time the score is read at the closest point on the path through the level descriptions. <strong>PRA-item</strong> learns one query per item of a fixed rubric; <strong>PRA-cond</strong> computes the query from the item name, so new rubric items can be given as text.</figcaption>
 </figure>
+
+<hr />
+
+<h3 id="demo" style="scroll-margin-top: 90px;"><span style="color: #8C1D40;"><strong>Interactive demo</strong></span></h3>
+<link rel="stylesheet" href="{{ site.baseurl }}/css/pra_demo.css">
+<div id="pra-demo" data-src="{{ site.baseurl }}/images/projects/pra/demo/demo.json" data-base="{{ site.baseurl }}/images/projects/pra/demo/"></div>
+<script src="{{ site.baseurl }}/js/pra_demo.js"></script>
 
 <hr />
 
